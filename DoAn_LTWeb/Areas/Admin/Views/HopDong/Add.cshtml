@@ -1,0 +1,87 @@
+﻿@model DoAn_LTWeb.Models.HopDong
+@{
+    Layout = "/Views/Shared/_LayoutUser.cshtml";
+    var today = DateTime.Now.ToString("yyyy-MM-dd");
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/profile.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/main.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/user.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/form.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/footer.css" asp-append-version="true">
+<link rel="stylesheet" href="~/fonts/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+
+<div class="row">
+    <div class="col-8">
+        <div class="form_wrap">
+            <div class="form_main">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form_title" style="height: 50px; display: inline-block; padding: 0 12px;" class="row mb-3">
+                            <h4 class="content_info-title">Please leave an appointment for us.</h4>
+                        </div>
+                        <!-- FORM HỢP ĐỒNG -->
+                        <form class="mt-4 main-form" id="appointmentForm" asp-controller="HopDong" asp-action="Add" method="post">
+                            @Html.AntiForgeryToken()
+                            <div class="form-group mb-3">
+                                <label class="mb-1 ms-2">Status</label>
+                                <select class="form-control" asp-for="HinhThuc" required>
+                                    <option value="">-- Chọn hình thức ký --</option>
+                                    <option value="Ký Trực Tiếp">Ký Trực Tiếp</option>
+                                    <option value="Ký Trực Tuyến">Ký Trực Tuyến</option>
+                                </select>
+                                <span asp-validation-for="HinhThuc" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="mb-1 ms-2">Start Date</label>
+                                <input type="date" class="form-control" asp-for="NgayBatDau" min="@today" required />
+                                <span asp-validation-for="NgayBatDau" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="mb-1 ms-2">End Date</label>
+                                <input type="date" class="form-control" asp-for="NgayKetThuc" min="@today" required>
+                                <span asp-validation-for="NgayKetThuc" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-buttons ms-2">
+                                <button type="submit" class="form_button me-2">Tiếp tục</button>
+                                <button style="background-color: #ccc;   " class="form_button"><a style="text-decoration: none; color: #000; " asp-controller="PhongTro" asp-action="Index">Cancel</a></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <div class="col-4">
+        <div class="row flex-column">
+            <div class="col-12">
+                <div class="card w-100" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i style="margin-right: 6px;" class="fa-solid fa-bullhorn"></i>
+                            Thông tin:
+                        </h5>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit.
+                            Reprehenderit excepturi quidem ipsam, distinctio voluptas debitis
+                            placeat
+                            corporis neque tenetur quam expedita in inventore quia nobis illum
+                            maxime
+                            amet pariatur suscipit!
+                        </p>
+                    </div>
+                </div>
+            </div>
+      
+        </div>
+   </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+

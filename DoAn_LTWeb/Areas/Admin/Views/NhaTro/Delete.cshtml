@@ -1,0 +1,39 @@
+﻿@model DoAn_LTWeb.Models.NhaTro
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="/font/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css">
+
+<div class="container mt-5" style="min-height: 500px">
+    <div class="card shadow border p-4" style="border-radius: 15px">
+        <h3 class="text-danger text-center">Xác nhận xóa phòng trọ</h3>
+        <hr>
+        <p><strong>Nhà:</strong> @Model.TenNhaTro</p>
+        <p><strong>Mô tả:</strong> @Model.DiaChi</p>
+
+        <div class="alert alert-warning text-center">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            Bạn có chắc chắn muốn xóa nhà này? Hành động này không thể hoàn tác.
+        </div>
+
+        <form asp-action="DeleteConfirmed" method="post" class="text-center">
+            <input type="hidden" asp-for="MaNhaTro" />
+
+            <button type="submit" name="delete" value="Delete" class="btn btn-danger me-2">
+                <i class="fas fa-trash-alt me-1"></i> Xóa
+            </button>
+
+            <a asp-controller="NhaTro" asp-action="Index_Admin" class="btn btn-secondary">
+                <i class="fas fa-times me-1"></i> Hủy
+            </a>
+        </form>
+    </div>
+</div>
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/assets/js/script.js"></script>

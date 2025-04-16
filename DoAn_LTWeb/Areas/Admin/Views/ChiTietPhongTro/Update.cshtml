@@ -1,0 +1,55 @@
+﻿@model DoAn_LTWeb.Models.ChiTietPhongTro
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/style_Admin_2.css" asp-append-version="true">
+
+
+<form class="form-1" asp-action="Update" enctype="multipart/form-data" method="post">
+    <input type="hidden" asp-for="MaChiTietPhongTro" />
+    @if (Model.PhongTro != null)
+    {
+        <div class="form-group">
+            <label asp-for="PhongTro.TenPhongTro">Tên phòng trọ</label>
+            <input asp-for="PhongTro.TenPhongTro" class="form-control" />
+            <span asp-validation-for="PhongTro.TenPhongTro" class="text-danger"></span>
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <label>Tên phòng trọ</label>
+            <input type="text" class="form-control" disabled placeholder="Không có dữ liệu" />
+        </div>
+    }
+
+    @if (Model.NoiThat != null)
+    {
+        <div class="form-group" multiple>
+            <label asp-for="MaNoiThat">Nội Thất</label>
+            <select asp-for="MaNoiThat" asp-items="@(ViewBag.NoiThat ?? new SelectList(Enumerable.Empty<SelectListItem>()))" class="form-control"
+                    class="form-control select2" multiple>
+            </select>
+            <span asp-validation-for="MaNoiThat" class="text-danger"></span>
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <label>Tên nội thất</label>
+            <input type="text" class="form-control" disabled placeholder="Không có dữ liệu" />
+        </div>
+    }
+
+    <div class="form-group">
+        <label>Giá phòng</label>
+        <input asp-for="GiaPhong" class="form-control" />
+        <span asp-validation-for="GiaPhong" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Update</button>
+</form>
+
+

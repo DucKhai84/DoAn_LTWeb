@@ -1,0 +1,66 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/LayoutAccount/_LayoutRegister.cshtml";
+}
+
+<section id="body">
+    <div class="container d-flex justify-content-center">
+        <div class="content_wrap ">
+            <div class="form-wrapper" id="form-wrapper">
+
+                <!-- Form Đăng ký -->
+                <div class="form-container" id="signup-form">
+                    <h3 class="content_login-name">
+                        <i class="fa-solid fa-building-user me-1"></i> 113 Cô Giang
+                    </h3>
+                    <div class="content_login-body">
+                        <div class="login_body-title">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <h2 class="body_login">Đăng Ký</h2>
+                        </div>
+
+                        <form class="body_form mt-3" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                            <div class="mt-3">
+                                <input asp-for="Input.Email" class="body_form-input" autocomplete="username" aria-required="true" placeholder="Name@example.com" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="mt-3">
+                                <input asp-for="Input.Password" class="body_form-input" autocomplete="new-password" aria-required="true" placeholder="Password" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="mt-3">
+                                <input asp-for="Input.ConfirmPassword" class="body_form-input" autocomplete="new-password" aria-required="true" placeholder="ConfirmPassword" />
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <div class="mt-3">
+                                <input asp-for="Input.Fullname" class="body_form-input" autocomplete="name" aria-required="true" placeholder="Fullname" />
+                                <span asp-validation-for="Input.Fullname" class="text-danger"></span>
+                            </div>
+                            <div class="mt-3">
+                                <input asp-for="Input.Phone" class="body_form-input" autocomplete="tel" aria-required="true" placeholder="Phone" />
+                                <span asp-validation-for="Input.Phone" class="text-danger"></span>
+                            </div>
+
+                            <div class="body_form-buttons">
+                                <button id="registerSubmit" type="submit" class="body_form-button">Đăng Ký</button>
+                            </div>
+                            <div class="body_form-functions">
+                                <a class="body_form-function" asp-page="./Login" id="show-login">Đăng nhập</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

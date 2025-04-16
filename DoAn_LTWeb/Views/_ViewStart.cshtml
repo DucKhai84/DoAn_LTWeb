@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    if (SignInManager.IsSignedIn(User))
+    {
+        var currentUser = await UserManager.GetUserAsync(User);
+        if (currentUser != null)
+        {
+            if (await UserManager.IsInRoleAsync(currentUser, "Admin"))
+            {
+                Layout = "~/Views/Shared/_Layout.cshtml"; // Layout Admin
+            }
+            else if (await UserManager.IsInRoleAsync(currentUser, "User"))
+            {
+                Layout = "~/Views/Shared/_LayoutUser.cshtml"; // Layout User
+            }
+            else
+            {
+                Layout = "~/Views/Shared/_LayoutHome.cshtml"; // Mặc định nếu không có Role
+            }
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutHome.cshtml"; // Layout mặc định trước khi login
+    }
+}

@@ -1,0 +1,104 @@
+﻿@model DoAn_LTWeb.ViewModels.ProfileViewModel
+@{
+    Layout = "/Views/Shared/_LayoutUser.cshtml";
+}
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="/css/main.css" asp-append-version="true">
+<link rel="stylesheet" href="/css/user.css" asp-append-version="true">
+<link rel="stylesheet" href="/css/profile.css" asp-append-version="true">
+<link rel="stylesheet" href="/css/footer.css" asp-append-version="true">
+<link rel="stylesheet" href="/fonts/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+<div class="content_wrap">
+    <div class="row ">
+        <div style="box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);"
+             class="col-3 d-flex justify-content-center">
+            <div class="content_avatar">
+                <img class="content_avatar-img" src="/images/R.jpg" alt="...">
+                <div class="content_avatar-info">
+                    <h4 class="avatar-info-name">Steave</h4>
+                    <div class="avatar-info-contacts">
+                        <a href="#" class="avatar-info-url">
+                            <i class="fa-solid fa-envelope me-2"></i>
+                            @Model.Email
+                        </a>
+                        <a href="#" class="avatar-info-url">
+                            <i class="fa-solid fa-phone me-2"></i>
+                            @Model.SoDienThoai
+                        </a>
+                    </div>
+                    <div class="avatar-info-socials">
+                        <a href="#" class="info-socials-url">
+                            <i style="margin-right: 4px;"
+                               class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="#" class="info-socials-url">
+                            <i style="margin-right: 4px;"
+                               class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="#" class="info-socials-url">
+                            <i style="margin-right: 4px;"
+                               class="fa-brands fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="content_information">
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="content_info">
+                <div class="row mt-3">
+                    <div style="padding-left: 24px;" class="col-md-7 update_wrap">
+                        <div style="height: 50px; display: inline-block; padding: 0 12px;" class="row mb-3">
+                            <h4 class="content_info-title">Update Information</h4>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" asp-for="TenKhachHang" placeholder="Fullname" aria-label="Fullname" required>
+                        </div>
+                        <div style="height: 50px;" class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" asp-for="Email" placeholder="Email" aria-label="Email" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" asp-for="SoDienThoai" placeholder="Phone" aria-label="Phone" required>
+                            </div>
+                        </div>
+                        <div style="height: 50px;" class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" asp-for="CMND" placeholder="CMND" aria-label="CMND">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <select class="form-control" asp-for="GioiTinh" aria-label="Sex">
+                                    <option selected disabled>Sex</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="height: 50px;" class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="date" class="form-control" asp-for="NgaySinh" aria-label="DOB">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" asp-for="NgayDangKy" placeholder="Register" aria-label="Register">
+                            </div>
+                        </div>
+                        <a href="#" class="content_button">Update</a>
+                    </div>
+
+                    <!-- Phần hình ảnh -->
+                    <div class="col-md-5 d-flex justify-content-center">
+                        <div class="card" style="width: 100%;">
+                            <img src="https://via.placeholder.com/300" class="card-img-top" alt="User Image">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Card Title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

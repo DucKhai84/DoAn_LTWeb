@@ -1,0 +1,82 @@
+﻿@model DoAn_LTWeb.Models.NoiThat
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/style_Admin_2.css" asp-append-version="true">
+
+
+<form class="form-1" asp-action="Add" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="TenNoiThat">Tên nội thất</label>
+        <input asp-for="TenNoiThat" class="form-control" placeholder="Tu sieu to..." />
+        <span asp-validation-for="TenNoiThat" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LoaiNoiThat">Loại nội thất</label>
+        <textarea asp-for="LoaiNoiThat" class="form-control" placeholder="Tu, Giuong..."></textarea>
+        <span asp-validation-for="LoaiNoiThat" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Gia">Giá</label>
+        <textarea asp-for="Gia" class="form-control" placeholder="Money..."></textarea>
+        <span asp-validation-for="Gia" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MoTa">Mô tả</label>
+        <textarea asp-for="MoTa" class="form-control" placeholder="Mo ta..."></textarea>
+        <span asp-validation-for="MoTa" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TinhTrang">Tình trạng</label>
+        <textarea asp-for="TinhTrang" class="form-control" placeholder="Moi hay cu roi..."></textarea>
+        <span asp-validation-for="TinhTrang" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NgayMua">Ngày mua</label>
+        <input asp-for="NgayMua" type="date" class="form-control" />
+        <span asp-validation-for="NgayMua" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Hình ảnh</label>
+        <input type="file" id="imageInput1" name="imageUrl" class="form-control" />
+    </div>
+
+    <div class="row" style="max-height: 150px">
+        <div class="col-6 hinhanh text-start">
+            <h5>Current Image</h5>
+            <img src="@Model.ImageUrl" alt="Product Image" style="max-width:100px; display:none;" id="imageInput1_preview" />
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-success mt-3">Cập nhật</button>
+</form>
+
+
+<script>
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.getElementById(input.id === 'imageInput' ? 'previewImage' : 'previewImage1');
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
+

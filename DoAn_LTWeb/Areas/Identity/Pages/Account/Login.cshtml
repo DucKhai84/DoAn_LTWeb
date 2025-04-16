@@ -1,0 +1,52 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "~/Views/Shared/LayoutAccount/_LayoutLogin.cshtml";
+}
+
+<section id="body">
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="content_wrap ">
+            <div class="form-wrapper" id="form-wrapper">
+                <!-- Form Đăng nhập -->
+                <div class="form-container" id="login-form">
+                    <h3 class="content_login-name">
+                        <i class="fa-solid fa-building-user me-1"></i> 113 Cô Giang
+                    </h3>
+                    <div class="content_login-body">
+                        <div class="login_body-title">
+                            <h2 class="body_login">Đăng nhập</h2>
+                        </div>
+                        <form class="body_form mt-3" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                            <div class="mb-3">
+                                <input asp-for="Input.Email" class="body_form-input form-control" type="email" placeholder="Email..." autocomplete="username">
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <input asp-for="Input.Password" class="body_form-input form-control" type="password" placeholder="Mật khẩu..." autocomplete="current-password">
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                           
+                            <div class="body_form-buttons">
+                                <button type="submit" class="body_form-button">Đăng nhập</button>
+                            </div>
+                            <div class="body_form-functions">
+                                <a class="body_form-function" asp-page="./Register" id="show-signup">Đăng Ký</a>
+                                <a class="body_form-function" asp-page="./ForgotPassword">Quên mật khẩu</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

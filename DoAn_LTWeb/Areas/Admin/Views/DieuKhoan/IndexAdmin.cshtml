@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DoAn_LTWeb.Models.DieuKhoan>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="/css/profile.css" asp-append-version="true">
+<link rel="stylesheet" href="/css/main.css" asp-append-version="true">
+<link rel="stylesheet" href="/css/user.css" asp-append-version="true">
+<link rel="stylesheet" href="/css/style_Admin_2.css" asp-append-version="true" />
+<link rel="stylesheet" href="/fonts/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+
+
+<table id="dieukhoanTable" class="display mt-5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Content</th>
+            <th><a href="/Admin/DieuKhoan/Add/${data}" class="btn btn-primary">Add</a></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<!-- Thêm DataTables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<script>
+          $(document).ready(function () {
+        if ($('#dieukhoanTable').length) {
+            $('#dieukhoanTable').DataTable({
+                "processing": true,
+                "serverSide": false,
+                "ajax": {
+                    "url": "/Admin/DieuKhoan/GetDieuKhoans",
+                    "type": "GET",
+                    "datatype": "json",
+                    "dataSrc": "data"
+                },
+                "pageLength": 10,
+                "columns": [
+                    { "data": "MaDieuKhoan" },
+                    { "data": "NoiDung" },
+                    {
+                        "data": "MaDieuKhoan",
+                        "render": function (data) {
+                            return `
+                                <a href="/Admin/DieuKhoan/Update/${data}" class="btn btn-warning">Edit</a>
+                                    <a href="/Admin/DieuKhoan/Delete/${data}" class="btn btn-danger">Delete</a>`;
+                        }
+                    }
+                ]
+            });
+        } else {
+            console.log("Table #dieukhoanTable not found!");
+        }
+    });
+
+
+</script>
+
+<style>
+    #dieukhoanTable_wrapper {
+        margin-top: 20px !important;
+        padding: 30px !important;
+    }
+
+</style>

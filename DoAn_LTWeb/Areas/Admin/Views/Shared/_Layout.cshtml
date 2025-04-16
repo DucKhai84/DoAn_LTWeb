@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Trang Chủ</title>
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./fonts/fontawesome-free-6.5.1-web/css/all.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+</head>
+
+<body>
+    <header id="header">
+        <div class="header-wrap container">
+            <h2 class="header-title ">AccomodationAdmin.</h2>
+            <div class="header-info">
+                <input class="header-search" type="text" placeholder="Search..." name="search" required>
+                <div class="header-login">
+                    <img class="header-login_avatar" src="/images/R.jpg"
+                         alt="Avatar">
+                    <span class="header_login-name">Steave</span>
+                    <div class="login-submenu">
+                        <ul class="login-submenu_list">
+                            <li class="submenu-list_item"><a href="#" class="list-item_url">Profile</a></li>
+                            <li class="submenu-list_item"><a href="#" class="list-item_url">Settings</a></li>
+                            <li class="submenu-list_item">
+                                <form method="post" asp-area="Identity" asp-page="/Account/Logout">
+                                    <button type="submit" class="list-item_url" style="border: none; background: none; color: inherit; cursor: pointer;">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="slidebar">
+        <div class="container slidebar-info">
+            <div class="info-wrap">
+                <span class="info-totalUser">
+                    <i class="fa-regular fa-user"></i>
+                    120
+                </span>
+                <span class="info-notify">
+                    <i style="margin-right: 6px;" class="fa-regular fa-bell"></i> 0
+                    <div class="info-notify_submenu">
+                        <ul class="notify-submenu_list">
+                            <li class="notify-list_item">
+                                <a href="#" class="notify-item_url">308 has been paid</a>
+                                <i style="margin-left: 18px;" class="fa-solid fa-user-check"></i>
+                            </li>
+                            <li class="notify-list_item">
+                                <a href="#" class="notify-item_url">309 has been paid</a>
+                                <i style="margin-left: 18px;" class="fa-solid fa-user-check"></i>
+                            </li>
+                            <li class="notify-list_item">
+                                <a href="#" class="notify-item_url">310 has been paid</a>
+                                <i style="margin-left: 18px;" class="fa-solid fa-user-check"></i>
+                            </li>
+                            <li class="notify-list_item">
+                                <a href="#" class="notify-item_url">311 has been paid</a>
+                                <i style="margin-left: 18px;" class="fa-solid fa-user-check"></i>
+                            </li>
+                            <li class="notify-list_item">
+                                <a href="#" class="notify-item_url">311 has been paid</a>
+                                <i style="margin-left: 18px;" class="fa-solid fa-user-check"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </span>
+            </div>
+
+        </div>
+    </section>
+
+
+    <main id="body">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <ul class="navbar-list">
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-chart-bar"></i>
+                            <a href="#" class="nav-item_url">Dashboard</a>
+                        </li>
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-house-user"></i>
+                            <a asp-controller="PhongTro" asp-action="Index_Admin" class="nav-item_url">Rooms</a>
+                        </li>
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-house-user"></i>
+                            <a asp-controller="PhongTro" asp-action="Add" class="nav-item_url">Add Room</a>
+                        </li>
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-users"></i>
+                            <a asp-controller="Admin" asp-action="Users" class="nav-item_url">Users</a>
+                        </li>
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-kitchen-set"></i>
+                            <a href="#" class="nav-item_url">Component</a>
+                        </li>
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-kitchen-set"></i>
+                            <a  asp-controller="HoaDon" asp-action="Index" class="nav-item_url">HoaDon</a>
+                        </li>
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-kitchen-set"></i>
+                            <a asp-controller="HoaDon" asp-action="Add" class="nav-item_url">HoaDon-Add</a>
+                        </li>
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-car"></i>
+                            <a asp-controller="Garage" asp-action="Garage" class="nav-item_url">Garage</a>
+                        </li>
+                        <li style="border-top: 1px solid rgba(0, 0, 0, .3);" class="navbar-list_item p-1"></li>
+
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-bars"></i>
+                            <a href="#" class="nav-item_url">Services</a>
+                            <ul class="navbar-item_submenu">
+                                <li class="navbar-item_submenu-item">
+                                    <i style="margin-right: 4px;" class="fa-solid fa-user-plus"></i>
+                                    <a href="#" class="nav-item_url">Tenant</a>
+                                </li>
+                                <li class="navbar-item_submenu-item">
+                                    <i style="margin-right: 4px;" class="fa-solid fa-motorcycle"></i>
+                                    <a href="#" class="nav-item_url">Vehical</a>
+                                </li>
+                                <li class="navbar-item_submenu-item">
+                                    <i style="margin-right: 4px;" class="fa-solid fa-screwdriver-wrench"></i>
+                                    <a href="#" class="nav-item_url">Check Item</a>
+                                </li>
+                                <li class="navbar-item_submenu-item">
+                                    <i style="margin-right: 4px;" class="fa-solid fa-building-shield"></i>
+                                    <a href="#" class="nav-item_url">Policy</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-10 content-wrap">
+                    <div class="content-section">
+                        <div class="row">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
+
+

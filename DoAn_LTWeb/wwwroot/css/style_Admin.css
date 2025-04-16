@@ -1,0 +1,316 @@
+﻿/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Dosis', sans-serif;
+}
+
+
+
+body {
+    display: flex;
+    background-color: #f4f6f9;
+    height: 100vh;
+}
+
+.container-fluid {
+    overflow-y: scroll; /* Cho phép cuộn dọc */
+    overflow-x: hidden;
+    background-color: white;
+}
+    /* Ẩn thanh cuộn trên Chrome, Safari */
+    .container-fluid::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .container-fluid::-webkit-scrollbar-thumb {
+        background-color: #6c757d; /* Màu thanh cuộn */
+        border-radius: 3px;
+    }
+
+        .container-fluid::-webkit-scrollbar-thumb:hover {
+            background-color: #495057;
+        }
+
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    height: 100%;
+    padding: 20px;
+    position: fixed;
+    overflow-y: scroll; /* Cho phép cuộn dọc */
+    overflow-x: hidden;
+}
+
+    /* Ẩn thanh cuộn trên Chrome, Safari */
+    .sidebar::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+        background-color: #6c757d; /* Màu thanh cuộn */
+        border-radius: 3px;
+    }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background-color: #495057;
+        }
+
+.sidebar-brand {
+    text-align: center;
+    width: 100%;
+}
+
+    .sidebar-brand img {
+        width: 100px;
+        max-width: 150px;
+        height: 100px;
+        margin-bottom: 20px;
+    }
+
+.side-nav {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    margin-left: 10px;
+}
+
+.side-nav-title {
+    font-size: calc(0.9375rem * 0.94);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: linear-gradient(to right, #838c9b 0%, #f1f1f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 5px;
+}
+
+.side-nav-item {
+    padding: 10px;
+}
+
+.side-nav-link {
+    display: flex;
+    align-items: center;
+    color: white;
+    opacity: 0.7;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.25s ease-in-out;
+    white-space: nowrap;
+    cursor: pointer; /* Thêm để dễ nhận biết */
+}
+
+    .side-nav-link:hover {
+        background-color: #495057;
+        color: white;
+        transition: all 0.25s ease-in-out;
+    }
+
+    .side-nav-link i {
+        margin-right: 10px;
+    }
+
+.side-nav ul {
+    list-style-type: none;
+}
+
+.side-nav-link:active,
+.side-nav-link:focus {
+    color: white;
+    opacity: 1;
+    /* font-weight: bold;    */
+    scale: 1.1;
+}
+
+
+
+/* Xóa màu nền và chỉ giữ màu chữ trắng */
+.menu {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+    /* Thiết lập khoảng cách và kiểu chữ */
+    .menu li {
+        padding: 8px 15px;
+        border-bottom: 1px solid transparent; /* Xóa viền dưới */
+        transition: all 0.3s ease-in-out;
+    }
+
+        /* Style cho các liên kết */
+        .menu li a {
+            text-decoration: none;
+            color: white; /* Màu chữ trắng */
+            display: block;
+            font-size: 14px;
+            transition: color 0.3s;
+            padding: 5px;
+            margin-left: 20px;
+        }
+
+            /* Khi hover, có thể làm chữ sáng hơn */
+            .menu li a:hover {
+                color: #f1f1f1;
+            }
+
+            /* Khi bấm vào, làm chữ nổi bật hơn */
+            .menu li a:active,
+            .menu li a:focus {
+                color: #ddd;
+                font-weight: bold;
+            }
+
+
+
+/* Nội dung chính */
+.content-wrapper {
+    margin-left: 250px;
+    width: calc(100% - 250px); /* Lấy toàn bộ chiều rộng trừ sidebar */
+    flex-grow: 1; /* Để nó tự mở rộng phần còn lại */
+    height: 100%;
+    background-color: white;
+}
+
+/* Header */
+.topbar {
+    background: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    width: calc(100% - 250px);
+    top: 0;
+    height: 71px;
+    z-index:10;
+}
+
+.logo-topbar img {
+    width: 40px;
+}
+
+.button-toggle-menu {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.topbar-menu {
+    margin: 0;
+    padding: 0;
+}
+
+/* Search */
+.app-search {
+    width: 300px;
+}
+
+    .app-search input {
+        width: 100%;
+        padding: 8px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+/* Topbar menu */
+.topbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-user img {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+}
+
+
+
+/* Footer */
+.footer {
+    background-color: #f5f6fa; /* Màu nền sáng */
+    color: #333; /* Màu chữ tối để dễ đọc */
+    padding: 15px 0;
+    font-size: 16px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid black;
+    opacity: 0.9;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    .footer .container-fluid {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 20px;
+        background-color: #f5f6fa;
+    }
+
+    .footer .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+    }
+
+    .footer .col-md-6 {
+        padding: 5px 15px;
+        color: black;
+    }
+
+.footer-links {
+    text-align: right;
+}
+
+    .footer-links a {
+        color: black;
+        text-decoration: none;
+        margin-left: 15px;
+        font-weight: 500;
+        transition: color 0.3s ease-in-out;
+    }
+
+        .footer-links a:hover {
+            color: #007bff; /* Đổi màu xanh khi hover */
+            text-decoration: underline;
+        }
+
+/* Đẩy nội dung trang lên để không bị footer che mất */
+body {
+    padding-bottom: 60px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer .row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer .col-md-6 {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .footer-links {
+        text-align: center;
+        margin-top: 5px;
+    }
+
+        .footer-links a {
+            margin: 0 10px;
+        }
+}

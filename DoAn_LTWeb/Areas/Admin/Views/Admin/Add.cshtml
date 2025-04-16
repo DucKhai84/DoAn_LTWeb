@@ -1,0 +1,51 @@
+﻿ @model DoAn_LTWeb.Models.KhachHang
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewData["Title"] = "Add User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/style_Admin_2.css" asp-append-version="true">
+<link rel="stylesheet" href="/fonts/fontawesome-free-6.5.1-web/css/all.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
+<form class="form-1" asp-action="Add" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group mb-4">
+        <input asp-for="TenKhachHang" class="form-control" placeholder="Nhập tên khách hàng" />
+        <span asp-validation-for="TenKhachHang" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-4">
+        <input asp-for="SoDienThoai" class="form-control" placeholder="Nhập số điện thoại" />
+        <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-4">
+        <input asp-for="Email" type="email" class="form-control" placeholder="Nhập email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-4">
+        <input asp-for="CMND" class="form-control" placeholder="Nhập CMND/CCCD" />
+        <span asp-validation-for="CMND" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-4">
+        <select asp-for="GioiTinh" class="form-control" asp-items="ViewBag.Genders">
+            <option value="">-- Chọn giới tính --</option>
+        </select>
+        <span asp-validation-for="GioiTinh" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-4">
+        <input asp-for="NgaySinh" type="date" class="form-control" />
+        <span asp-validation-for="NgaySinh" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Add User</button>
+</form>

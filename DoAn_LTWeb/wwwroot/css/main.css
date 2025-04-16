@@ -1,0 +1,256 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+/* header */
+#header {
+    background-color: #000;
+    height: 70px;
+}
+
+.header-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.header-title {
+    color: #f0f0f0;
+}
+
+.header-info {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.header-search {
+    width: 300px;
+    padding: 8px;
+    border-radius: 18px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.header-login {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 80px;
+    cursor: pointer;
+    height: 100%;
+}
+
+.header_login-name {
+    color: #f0f0f0;
+}
+
+.header-login:hover .login-submenu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.header-login_avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.header_login-name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* submenu  */
+.login-submenu {
+    position: absolute;
+    top: 100%;
+    right: -80px;
+    width: 180px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.login-submenu_list {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.submenu-list_item {
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submenu-list_item:hover {
+    background-color: #f0f0f0;
+    transform: translateX(3px);
+}
+
+/* submenu danh sach */
+.navbar-item_submenu{
+    list-style: none;
+    padding-left: 18px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    pointer-events: none;
+}
+.navbar-item_submenu-item{
+    display: block;
+    padding: 10px 6px;
+    margin: 12px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    
+}
+.navbar-list_item:last-child:hover .navbar-item_submenu{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.navbar-item_submenu-item:hover {
+    background-color: #f0f0f0;
+    transform: translateX(3px);
+}
+
+.list-item_url {
+    text-decoration: none;
+    color: #000;
+    margin-left: 26px;
+}
+
+/* slidebar */
+#slidebar {
+    height: 40px;
+   
+}
+
+.slidebar-info {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    height: 100%;
+}
+
+.info-wrap {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.info-notify {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    margin-left: 40px;
+    cursor: pointer;
+}
+.info-notify_submenu{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 250px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    pointer-events: none;
+    z-index: 9999;
+}
+.notify-submenu_list {
+    list-style: none;
+    padding: 18px 0;
+}
+
+.info-notify:hover .info-notify_submenu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.notify-list_item{
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.notify-list_item:hover {
+    background-color: #f0f0f0;
+    transform: translateX(3px);
+}
+.notify-item_url{
+    text-decoration: none;
+    color: #000;
+    margin-left: 30px;
+}
+/* main */
+#body {
+    
+    height: 700px;
+}
+
+#body .container {
+    height: 100%;
+}
+
+#body .row {
+    flex-wrap: nowrap;
+    height: 100%;
+}
+
+/* navbar */
+#body .col-2 {
+    width: 240px;
+    height: 100%;
+
+}
+
+.navbar-list {
+    padding: 20px;
+    display: block;
+    height: 100%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, .3);
+}
+
+.navbar-list_item {
+    display: block;
+    padding: 10px 20px;
+    margin: 12px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-list_item:not(:last-child):hover {
+    transform: translateX(3px);
+}
+
+
+.nav-item_url {
+    text-decoration: none;
+    color: #000;
+}
+
+.content-wrap{
+    height: 100%;
+}
+.content-wrap .card{
+    min-height: 400px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, .4);
+}
+

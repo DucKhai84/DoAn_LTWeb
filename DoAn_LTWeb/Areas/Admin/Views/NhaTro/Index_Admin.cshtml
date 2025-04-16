@@ -1,0 +1,103 @@
+﻿@model IEnumerable<DoAn_LTWeb.Models.NhaTro>
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/Add_Home.css" asp-append-version="true">
+<link rel="stylesheet" href="/font/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="product-list d-flex flex-wrap">
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-4 mb-4 d-flex justify-content-start">
+                            <div class="card shadow-sm border-0">
+                                <img src="@item.ImageUrl" class="card-img-top rounded-top" alt="Ảnh đại diện của phòng trọ">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">@item.TenNhaTro</h5>
+                                    <p class="card-text text-muted">@item.DiaChi</p>
+                                    <div class="d-flex gap-2">
+                                        <a class="btn btn-primary text-white" asp-controller="NhaTro" asp-action="Update" asp-route-id="@item.MaNhaTro">Sửa</a>
+                                        <a class="btn btn-danger text-white" asp-controller="NhaTro" asp-action="Delete" asp-route-id="@item.MaNhaTro">Xóa</a>
+                                    </div>
+                                    @if (item.ImageUrls != null && item.ImageUrls.Any())
+                                    {
+                                        <div id="carousel_@item.MaNhaTro" class="carousel slide mt-3" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                @for (int i = 0; i < item.ImageUrls.Count; i++)
+                                                {
+                                                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                                                        <img src="@item.ImageUrls[i]" class="d-block w-100 rounded" alt="Hình ảnh phòng trọ">
+                                                    </div>
+                                                }
+                                            </div>
+                                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel_@item.MaNhaTro" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button" data-bs-target="#carousel_@item.MaNhaTro" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-center text-muted">Không có nhà trọ nào.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container
+    {
+        margin-left:0;
+        margin-right:0;
+    }
+    .card {
+        transition: transform 0.2s;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+    .btn {
+        width: 100px;
+    }
+
+    .carousel img {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .product-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .col-md-4 {
+        flex: 0 0 30%;
+        margin-right: 15px;
+        margin-bottom: 20px;
+    }
+
+    .dark-mode .card
+    {
+        background-color: #2c2f34;
+    }
+
+
+    </style>

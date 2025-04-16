@@ -1,0 +1,113 @@
+﻿@model IEnumerable<DoAn_LTWeb.Models.NhanVien>
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
+<link href="/css/Add_Home.css" rel="stylesheet" asp-append-version="true" />
+<link rel="stylesheet" href="~/font/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+
+<div class="container-fluid mt-4">
+    <div class="row w-100">
+        <div class="col-md-12">
+            <div class="product-list">
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var group in Model.GroupBy(p => p.NhaTro.TenNhaTro))
+                    {
+                        <div class="nha-tro-section mb-4">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead class="table" style="background-color: #353a40; color: white;">
+                                        <tr>
+                                            <th>Ảnh</th>
+                                            <th>Tên Nhân Viên</th>
+                                            <th>Điện thoại</th>
+                                            <th>Email</th>
+                                            <th>CMND</th>
+                                            <th>Giới tính</th>
+                                            <th>Ngày sinh</th>
+                                            <th>Ngày vào làm</th>
+                                            <th>Nhà trọ</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in group)
+                                        {
+                                            <tr>
+                                                <td><img src="@item.ImageUrl" class="img-thumbnail" width="80" height="80" alt="Ảnh nhân viên"></td>
+                                                <td>@item.TenNhanVien</td>
+                                                <td>@item.SoDienThoai</td>
+                                                <td>@item.Email</td>
+                                                <td>@item.CMND</td>
+                                                <td>@item.GioiTinh</td>
+                                                <td>@item.NgaySinh.ToString("dd/MM/yyyy")</td>
+                                                <td>@item.NgayVaoLam.ToString("dd/MM/yyyy")</td>
+                                                <td>@item.NhaTro.TenNhaTro</td>
+                                                <td>
+                                                    <a class="btn btn-info text-white btn-sm" asp-controller="NhanVien" asp-action="Update" asp-route-id="@item.MaNhanVien">
+                                                        <i class="fas fa-pencil-alt"></i> Sửa
+                                                    </a>
+                                                    <a class="btn btn-danger text-white btn-sm" asp-controller="NhanVien" asp-action="Delete" asp-route-id="@item.MaNhanVien">
+                                                        <i class="fas fa-trash-alt"></i> Xóa
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-center text-muted">Không có nhân viên nào.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container-fluid
+    {
+        margin: 0;
+    }
+
+    .product-list
+    {
+        width: 100%;
+        margin-left: 15px;
+    }
+    .nha-tro-title {
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .img-thumbnail {
+        object-fit: cover;
+    }
+
+    .nha-tro-section thead
+    {
+        border: 1px #2c2f34;
+    }
+
+    .dark-mode .nha-tro-section thead {
+        border: 1px white;
+    }
+
+    .dark-mode .nha-tro-section td
+    {
+        color: #fff;
+    }
+</style>

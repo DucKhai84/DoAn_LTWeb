@@ -1,0 +1,55 @@
+﻿@model DoAn_LTWeb.Models.HoaDon
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    ViewData["Title"] = "Add HoaDon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+  
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true">
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/main.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/style_Admin_2.css" asp-append-version="true">
+
+<form class="form-1" asp-action="Add" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="MaKhachHang">Khách Hàng</label>
+        <select asp-for="MaKhachHang" asp-items="@(ViewBag.KhachHang ?? new SelectList(Enumerable.Empty<SelectListItem>()))" class="form-control">
+            <option value="">-- Chọn Khách Hàng --</option>
+        </select>
+        <span asp-validation-for="MaKhachHang" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaNhanVien">Nhân Viên</label>
+        <select asp-for="MaNhanVien" asp-items="@(ViewBag.NhanVien ?? new SelectList(Enumerable.Empty<SelectListItem>()))" class="form-control">
+            <option value="">-- Chọn Nhân Viên --</option>
+        </select>
+        <span asp-validation-for="MaNhanVien" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SoDien">Số Điện</label>
+        <input asp-for="SoDien" type="number" class="form-control" placeholder="So dien..."/>
+        <span asp-validation-for="SoDien" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SoNuoc">Số Nước</label>
+        <input asp-for="SoNuoc" type="number" class="form-control" placeholder="So nuoc..."/>
+        <span asp-validation-for="SoNuoc" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">    
+        <label asp-for="NgayLap">Ngày Lập</label>
+        <input asp-for="NgayLap" type="date" class="form-control" />
+        <span asp-validation-for="NgayLap" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Thêm</button>
+</form>
+
+
+
+<script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>

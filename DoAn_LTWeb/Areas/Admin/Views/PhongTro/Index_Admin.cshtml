@@ -1,0 +1,190 @@
+﻿@model IEnumerable<DoAn_LTWeb.Models.PhongTro>
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true">
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
+<link href="/css/main.css" rel="stylesheet" asp-append-version="true" />
+<link rel="stylesheet" href="~/font/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+
+<div class="container-fluid">
+    <div class="row product">
+        <div class="col-md-12 mt-4 mb-5">
+            <div class="product-list" style="padding: 10px">
+                <!-- Kiểm tra danh sách sản phẩm -->
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var group in Model.GroupBy(p => p.NhaTro.TenNhaTro))
+                    {
+                        <div class="nha-tro-section shadow" style="max-height: 730px;overflow-y: auto;overflow-x: hidden">
+                            <h3 class="nha-tro-title">Nhà trọ: @group.Key</h3>
+                            <div class="room-list-scroll">
+                                <div class="row">
+                                    @foreach (var item in group)
+                                    {
+                                        
+                                        <div class="col-md-6 mb-4">
+                                            <div class="room-item">
+                                                <div class="card">
+                                                    <div class="row no-gutters">
+                                                        <!-- Ảnh đại diện phòng trọ -->
+                                                        <div class="col-md-4">
+                                                            <img src="@item.ImageUrl" class="card-img" alt="Ảnh đại diện của phòng trọ">
+                                                        </div>
+                                                        <!-- Nội dung chi tiết -->
+                                                        <div class="col-md-8">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">@item.TenPhongTro</h5>
+                                                                <p class="card-text">@item.TrangThai</p>
+                                                                <button type="button" class="btn btn-primary">
+                                                                    <a style="text-decoration:none;color:white;" asp-controller="PhongTro" asp-action="Update" asp-route-id="@item.MaPhongTro">Sửa</a>
+                                                                </button>
+                                                                <button type="button" class="btn btn-secondary">
+                                                                    <a style="text-decoration:none;color:white;" asp-controller="PhongTro" asp-action="Delete" asp-route-id="@item.MaPhongTro">Xóa</a>
+                                                                </button>
+                                                                <button type="button" class="btn btn-success">
+                                                                    <a style="text-decoration:none;color:white;" asp-controller="PhongTro" asp-action="Detail" asp-route-id="@item.MaPhongTro">Chi tiết</a>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>Không có sản phẩm nào.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .nha-tro-section::-webkit-scrollbar {
+        width: 4px; /* Độ rộng thanh cuộn */
+    }
+
+    .nha-tro-section::-webkit-scrollbar-thumb {
+        background-color: #828c9d; /* Màu của thanh cuộn */
+        border-radius: 10px; /* Bo tròn */
+    }
+
+    .nha-tro-section::-webkit-scrollbar-track {
+        background: #f1f1f1; /* Màu nền track */
+        border-radius: 10px;
+    }
+
+    /* Căn chỉnh tổng thể */
+
+
+    /* Danh sách nhà trọ */
+    .nha-tro-section {
+        margin-bottom: 30px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+    }
+
+    .nha-tro-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    /* Danh sách phòng trọ */
+    .room-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .room-item {
+        padding: 15px;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+
+    .card {
+        border: none;
+    }
+
+    .card-img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .card-body {
+        padding: 10px;
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .card-text {
+        font-size: 14px;
+        color: #555;
+    }
+
+    /* Nút chức năng */
+    .btn {
+        margin-right: 5px;
+    }
+
+        .btn a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 5px 10px;
+        }
+
+
+
+    .dark-mode .nha-tro-section
+    {
+        background-color: #383F47;
+        color: #fff;
+        border: none;
+    }
+
+    .dark-mode .nha-tro-section h3 {
+        color: #a6afb5;
+    }
+
+    .dark-mode .room-item
+    {
+        background-color: #39424A;
+    }
+
+    .dark-mode .room-item h5,
+    .dark-mode .room-item p
+    {
+        color: #fff;
+    }
+
+    .dark-mode .no-gutters .col-md-4,
+    .dark-mode .no-gutters .col-md-8 
+    {
+        background-color: #39424A;
+    }
+
+</style>

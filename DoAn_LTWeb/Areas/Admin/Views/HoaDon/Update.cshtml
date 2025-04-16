@@ -1,0 +1,34 @@
+﻿@model DoAn_LTWeb.Models.HoaDon
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/style_Admin_2.css" asp-append-version="true">
+
+
+<form class="form-1" asp-action="Update" enctype="multipart/form-data">
+    <input type="hidden" asp-for="MaHoaDon" />
+
+    <div class="form-group">
+        <label asp-for="SoDien">Số Điện</label>
+        <input asp-for="SoDien" type="number" class="form-control" placeholder="So dien..." />
+        <span asp-validation-for="SoDien" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SoNuoc">Số Nước</label>
+        <input asp-for="SoNuoc" type="number" class="form-control" placeholder="So nuoc..." />
+        <span asp-validation-for="SoNuoc" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NgayLap">Ngày Lập</label>
+        <input asp-for="NgayLap" type="date" class="form-control" />
+        <span asp-validation-for="NgayLap" class="text-danger"></span>
+    </div>
+ 
+    <button type="submit" class="btn btn-success mt-3">Update</button>
+</form>
+

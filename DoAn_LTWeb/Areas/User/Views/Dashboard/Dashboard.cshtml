@@ -1,0 +1,83 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+@model DoAn_LTWeb.ViewModels.DashboardViewModel
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/profile.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/main.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/user.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/form.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/footer.css" asp-append-version="true">
+<link rel="stylesheet" href="~/fonts/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+
+
+<div class="row">
+    <!-- Biểu đồ đăng ký -->
+    <div style=" box-shadow: 0px 2px 5px rgba(0, 0, 0, .3);" class="col-md-6 me-3">
+        <h3 style="margin-left: 12px" class="my-2">Biểu đồ đăng ký người dùng theo tháng</h3>
+        <canvas id="userChart" width="600" height="300"></canvas>
+        <p style="margin: 12px 16px 0">Biểu đồ thể hiện sự quan tâm của khách hàng đối với các loại phòng trọ sạch sẽ, tiện nghi và an ninh của chúng tôi.</p>
+    </div>
+
+    <!-- Biểu đồ hợp đồng -->
+    <div style=" box-shadow: 0px 2px 5px rgba(0, 0, 0, .5);" class="col-md-6">
+        <h3 style="margin-left: 12px" class="my-2">Biểu đồ lượt đặt lịch hẹn </h3>
+        <canvas id="contractChart" width="600" height="300"></canvas>
+        <p style="margin: 12px 16px 0">Biểu đồ được thể hiện các khách hàng đã tìm hiểu các loại phòng và đã đưa ra quyết định đặt lịch hẹn với chúng tôi thông qua website bao gồm việc đặt trực tuyến hoặc trực tiếp.</p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Biểu đồ đăng ký
+    const regLabels = @Html.Raw(Json.Serialize(Model.RegistrationStats.Select(x => "Tháng " + x.Month)));
+    const regData = @Html.Raw(Json.Serialize(Model.RegistrationStats.Select(x => x.Count)));
+
+    const userCtx = document.getElementById('userChart').getContext('2d');
+    new Chart(userCtx, {
+        type: 'line',
+        data: {
+            labels: regLabels,
+            datasets: [{
+                label: 'Số người đăng ký',
+                data: regData,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // Biểu đồ hợp đồng theo hình thức
+    const contractLabels = @Html.Raw(Json.Serialize(Model.ContractStats.Select(x => x.HinhThuc)));
+    const contractData = @Html.Raw(Json.Serialize(Model.ContractStats.Select(x => x.Count)));
+
+    const contractCtx = document.getElementById('contractChart').getContext('2d');
+    new Chart(contractCtx, {
+        type: 'bar',
+        data: {
+            labels: contractLabels,
+            datasets: [{
+                label: 'Số hợp đồng',
+                data: contractData,
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>

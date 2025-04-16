@@ -1,0 +1,86 @@
+﻿@model DoAn_LTWeb.Models.PhongTro
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Update";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/style_Admin_2.css" asp-append-version="true">
+
+
+<form class="form-1" asp-action="Update" enctype="multipart/form-data">
+    <input type="hidden" asp-for="MaPhongTro" />
+    <div class="form-group">
+        <label asp-for="TenPhongTro">Tên phòng trọ</label>
+        <input asp-for="TenPhongTro" class="form-control" placeholder="Hutech..."/>
+        <span asp-validation-for="TenPhongTro" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TrangThai">Trạng thái</label>
+        <select asp-for="TrangThai" class="form-control">
+            <option value="">-- Chọn Trạng Thái --</option>
+            <option value="Trống">Trống</option>
+            <option value="Đã thuê">Đã thuê</option>
+        </select>
+        <span asp-validation-for="TrangThai" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="DienTich">Diện tích</label>
+        <input asp-for="DienTich" class="form-control" placeholder="Phòng bao nhiêu m2..." />
+        <span asp-validation-for="DienTich" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Mota">Mô Tả</label>
+        <textarea asp-for="Mota" class="form-control" rows="3" placeholder="Nhà trọ siêu đẹpp..."></textarea>
+        <span asp-validation-for="Mota" class="text-danger"></span>
+    </div>
+  
+    <div class="form-group">
+        <label>Hình ảnh</label>
+        <input type="file" id="imageInput1" name="imageUrl" class="form-control" />
+    </div>
+
+    @if (ViewBag.NoiThatList != null)
+    {
+        <div class="form-group">
+            <label for="MaNoiThat">Nội thất</label>
+            <select name="MaNoiThat" id="MaNoiThat" class="form-control" required>
+                <option value="">-- Chọn Nội Thất --</option>
+                @foreach (var item in ViewBag.NoiThatList)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </div>
+    }
+
+
+    <div class="row" style="max-height: 150px">
+        <div class="col-6 hinhanh  text-start">
+            <h5>Current Image</h5>
+            <img src="@Model.ImageUrl" alt="Product Image" style="max-width:200px;" id="previewImage" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Update</button>
+</form>
+
+<script>
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.getElementById(input.id === 'imageInput' ? 'previewImage' : 'previewImage1');
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>

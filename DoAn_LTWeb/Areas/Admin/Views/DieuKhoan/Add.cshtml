@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="/css/profile.css" asp-append-version="true">
+<link rel="stylesheet" href="/css/main.css" asp-append-version="true">
+<link rel="stylesheet" href="/css/user.css" asp-append-version="true">
+<link rel="stylesheet" href="/css/style_Admin_2.css" asp-append-version="true" />
+<link rel="stylesheet" href="/fonts/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+
+<form class="form-1" asp-action="Add" method="post" enctype="multipart/form-data">
+
+    <div style="height: 50px; display: inline-block;text-align: center" class="row mb-3">
+        <h4 class="content_info-title">📜 Add Term</h4>
+    </div>
+
+    <div class="form-group">
+        <textarea id="NoiDung" name="NoiDung" class="form-control" rows="4" required placeholder="Thêm nội dung điều khoản..."></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Thêm</button>
+</form>

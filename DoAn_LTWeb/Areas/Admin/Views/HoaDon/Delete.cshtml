@@ -1,0 +1,24 @@
+﻿@model DoAn_LTWeb.Models.HoaDon
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="/font/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css">
+
+<div>
+    <h4>Phòng: @Model.KhachHang.TenKhachHang</h4>
+    <h4>Phòng: @Model.NhanVien.TenNhanVien</h4>
+    <h4>Phòng: @Model.TienPhong</h4>
+    <h4>Mô tả: @Model.NgayLap</h4>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="MaHoaDon" />
+    <input type="submit" name="delete" value="Delete" class="btn btn-danger" /> |
+    <button type="submit" class="btn btn-secondary"><a style="text-decoration:none;color:white;" asp-controller="HoaDon" asp-action="Index">Cancel</a></button>
+</form>
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/assets/js/script.js"></script>

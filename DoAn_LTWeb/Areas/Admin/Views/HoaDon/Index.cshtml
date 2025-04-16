@@ -1,0 +1,74 @@
+﻿@model IEnumerable<DoAn_LTWeb.Models.HoaDon>
+@{
+    ViewData["Title"] = "Danh sách Hóa Đơn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true">
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/main.css" asp-append-version="true">
+
+<div class="container-fluid mt-4">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped" style="font-size: 1.1rem;">
+            <thead class="table" style="background-color: #353a40; color: white;">
+                <tr>
+                    <th>Tên Khách Hàng</th>
+                    <th>Nhân Viên</th>
+                    <th>Ngày Lập</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.KhachHang.TenKhachHang</td>
+                            <td>@item.NhanVien.TenNhanVien</td>
+                            <td>@item.NgayLap.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                <a class="btn btn-success text-white" asp-controller="HoaDon" asp-action="PrintReport" asp-route-id="@item.MaHoaDon">
+                                    <i class="fas fa-file-pdf"></i> Xuất
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">Không có hóa đơn nào.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .container-fluid {
+        margin: 0;
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 12px;
+    }
+
+    .table-responsive thead
+    {
+        border: 1px #2c2f34
+    }
+
+    .dark-mode .table-responsive td {
+        color: white;
+    }
+
+    .dark-mode .table-responsive thead
+    {
+        border: 1px white;
+    }
+</style>

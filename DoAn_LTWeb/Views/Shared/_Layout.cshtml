@@ -1,0 +1,463 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Trang Chủ</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/fonts/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/css/style_Admin.css" asp-append-version="true">
+</head>
+
+<body>
+    <!-- Sidebar Start -->
+    <div class="container-fluid p-0 m-0">
+        <div class="row h-100 w-100 m-0">
+
+            <div class="sidebar col-auto" style="width: 250px">
+                <div class="sidebar-brand">
+                    <img src="~/img/logo.png" alt="Logo-website">
+                </div>
+
+                <div class="sidebar-main">
+                    <ul class="side-nav">
+                        <li class="side-nav-title">Controller</li>
+
+                        <ul class="side-nav">
+                            <li class="side-nav-item">
+                                <a data-bs-toggle="collapse" href="#menuPhongTro" aria-expanded="false" class="side-nav-link">
+                                    <i class="fa-solid fa-house-user" style="width: 20px"></i>
+                                    <span> Phòng trọ </span>
+                                </a>
+                                <ul class="collapse menu" id="menuPhongTro">
+                                    <li><a asp-area="Admin" asp-controller="PhongTro" asp-action="Index_Admin">View</a></li>
+                                    <li> <a asp-area="Admin" asp-controller="PhongTro" asp-action="Add">Add</a></li>
+                                    <li><a asp-area="Admin" asp-controller="ChiTietPhongTro" asp-action="Index_Admin">Detail</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="side-nav-item">
+                                <a data-bs-toggle="collapse" href="#menuNhaTro" aria-expanded="false" class="side-nav-link">
+                                    <i class="fa-solid fa-house" style="width: 20px"></i>
+                                    <span> Nhà trọ </span>
+                                </a>
+                                <ul class="collapse menu" id="menuNhaTro">
+                                    <li><a asp-area="Admin" asp-controller="NhaTro" asp-action="Index_Admin">View</a></li>
+                                    <li><a asp-area="Admin" asp-controller="NhaTro" asp-action="Add">Add</a></li>
+                                    <li><a asp-controller="DieuKhoan" asp-area="Admin" asp-action="IndexAdmin">Detail</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li class="side-nav-item">
+                                <a data-bs-toggle="collapse" href="#menuKhachHang" aria-expanded="false" class="side-nav-link">
+                                    <i class="fa-solid fa-user-secret" style="width: 20px"></i>
+                                    <span> Khách hàng </span>
+                                </a>
+                                <ul class="collapse menu" id="menuKhachHang">
+                                    <li><a asp-area="Admin" asp-controller="Admin" asp-action="Users">View</a></li>
+                                    <li><a asp-area="Admin" asp-controller="Admin" asp-action="Index1">Add</a></li>
+                                    <li><a href="#">Detail</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="side-nav-item">
+                                <a data-bs-toggle="collapse" href="#menuNhanVien" aria-expanded="false" class="side-nav-link">
+                                    <i class="fa-solid fa-user" style="width: 20px"></i>
+                                    <span> Nhân viên </span>
+                                </a>
+                                <ul class="collapse menu" id="menuNhanVien">
+                                    <li> <a asp-area="Admin" asp-controller="NhanVien" asp-action="Index_Admin">View</a></li>
+                                    <li><a asp-area="Admin" asp-controller="NhanVien" asp-action="Add">Add</a></li>
+                                    <li><a href="#">Detail</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="side-nav-item">
+                                <a data-bs-toggle="collapse" href="#menuNoiThat" aria-expanded="false" class="side-nav-link">
+                                    <i class="fa-brands fa-intercom" style="width: 20px"></i>
+                                    <span> Nội thất </span>
+                                </a>
+                                <!-- <div class="collapse" > -->
+                                <ul class="collapse menu" id="menuNoiThat">
+                                    <li><a asp-area="Admin" asp-controller="NoiThat" asp-action="Index_Admin">View</a></li>
+                                    <li><a asp-area="Admin" asp-controller="NoiThat" asp-action="Add">Add</a></li>
+                                    <li><a href="#">Detail</a></li>
+                                </ul>
+                                <!-- </div> -->
+                            </li>
+
+                            <li class="side-nav-item">
+                                <a data-bs-toggle="collapse" href="#menuHoaDon" aria-expanded="false" class="side-nav-link">
+                                    <i class="fa-solid fa-money-bills" style="width: 20px;"></i>
+                                    <span> Hóa đơn </span>
+                                </a>
+                                <ul class="collapse menu" id="menuHoaDon">
+                                    <li><a asp-area="Admin" asp-controller="HoaDon" asp-action="Index">View</a></li>
+                                    <li><a asp-area="Admin" asp-controller="HoaDon" asp-action="Add">Add</a></li>
+                                    <li><a href="#">Detail</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="side-nav-item">
+                                <a data-bs-toggle="collapse" href="#menuXe" aria-expanded="false" class="side-nav-link">
+                                    <i class="fa-solid fa-money-bills" style="width: 20px;"></i>
+                                    <span> Xe </span>
+                                </a>
+                            <ul class="collapse menu" id="menuXe">
+                                    <li> <a asp-area="Admin" asp-controller="Garage" asp-action="Garage">View</a></li>
+                                    <li><a href="#">Add</a></li>
+                                    <li><a href="#">Detail</a></li>
+                                </ul>
+                            </li>
+                           
+
+                            <li class="side-nav-title">Models</li>
+                        </ul>
+                </div>
+
+
+            </div>
+            <!-- End Sidebar -->
+            <!-- Content -->
+            <div class="content-wrapper px-0 col">
+                <header>
+                    <div class="topbar">
+
+                        <div class="d-flex align-items-center gap-lg-2 gap-1">
+
+                            <!-- Sidebar Menu Toggle Button -->
+                            <button class="button-toggle-menu">
+                                <i class="fa-solid fa-bars"></i>
+                            </button>
+
+
+                            <!-- Topbar Search Form -->
+                            <div class="app-search dropdown d-none d-lg-block">
+                                <form>
+                                    <div class="input-group">
+                                        <input type="search" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
+                                        <span class="mdi mdi-magnify search-icon"></span>
+                                        <button class="input-group-text btn btn-primary" style="background-color: #838c9b;border: none" type="submit">Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <ul class="topbar-menu d-flex align-items-center gap-3">
+                            <li class="dropdown d-lg-none">
+                                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <i class="ri-search-line font-22"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                                    <form class="p-3">
+                                        <input type="search" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                    </form>
+                                </div>
+                            </li>
+
+
+                            <!-- Bell -->
+                            <section id="slidebar">
+                                <div class="container slidebar-info">
+                                    <div class="info-wrap">
+                                        <span class="info-notify">
+                                            <i id="theme-icon" style="margin-right: 5px" class="fa-solid fa-bell font-22"></i>
+                                            <span id="notification-count">0</span>
+                                            <div class="info-notify_submenu">
+                                                <ul id="bookingRequests1" class="list-unstyled"></ul> <!-- Danh sách yêu cầu -->
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </section>
+
+
+
+                            <li class="d-none d-sm-inline-block">
+                                <button id="light-dark-mode" class="btn btn-outline-secondary" data-bs-toggle="tooltip"
+                                        data-bs-placement="left" aria-label="Theme Mode" data-bs-original-title="Theme Mode">
+                                    <i id="theme-icon" class="fa-solid fa-moon font-22"></i>
+                                </button>
+                            </li>
+
+
+                            <li class="d-none d-md-inline-block">
+                                <a class="nav-link" href="" data-toggle="fullscreen">
+                                    <i class="fa-solid fa-expand font-22" style="color: #838c9b"></i>
+                                </a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a class="nav-link  arrow-none nav-user px-2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <span class="account-user-avatar">
+                                        <img src="~/img/nen1.jpg" style="background-color: #838c9b" alt="user-image" width="32" class="rounded-circle">
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">
+                                    <!-- item-->
+                                    <div class=" dropdown-header noti-title">
+                                        <h6 class="text-overflow m-0">Welcome !</h6>
+                                    </div>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">
+                                        <i class="mdi mdi-account-circle me-1"></i>
+                                        <span>My Account</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">
+                                        <i class="mdi mdi-account-edit me-1"></i>
+                                        <span>Settings</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">
+                                        <i class="mdi mdi-lifebuoy me-1"></i>
+                                        <span>Support</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">
+                                        <i class="mdi mdi-lock-outline me-1"></i>
+                                        <span>Lock Screen</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item" onclick="document.getElementById('logout-form').submit();">
+                                        <i class="mdi mdi-logout me-1"></i>
+                                        <span>Logout</span>
+                                    </a>
+
+                                    <form id="logout-form" method="post" asp-area="Identity" asp-page="/Account/Logout" style="display: none;">
+                                    </form>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+                <!-- End Header -->
+                <div class="container-fluid" style="margin-top: 71px; padding: 0">
+                    <div class="row">
+                        <div class="col-12" style="margin: 0; padding: 0">
+                             @RenderBody()
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="footer w-100">
+                    <div class="container-fluid w-100 m-0">
+                        <div class="row w-100 d-flex justify-content-between align-items-center">
+                            <div class="col-md-6 px-3">
+                                <script>document.write(new Date().getFullYear())</script> © HaiDang - CzCloudy.com
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <style>
+        /* Dark mode */
+        .dark-mode {
+             background-color: #121212;
+             color: #e0e0e0;
+        }
+        /* SideBar */
+        .dark-mode .sidebar
+        {
+            background-color: #2a353b;
+            color: #ffffff;
+        }
+
+        /* topbar - header */
+        .dark-mode .topbar
+        {
+            background-color: #3a444e;
+            color: #ffffff;
+            border: none;
+        }
+
+        .dark-mode .topbar .app-search
+        {
+            opacity: 0.9;
+        }
+
+        /* content-wrapper */
+        .dark-mode .content-wrapper {
+            background-color: #353a40;
+                color: #ffffff;
+        }
+
+        .dark-mode .container-fluid {
+            background-color: #353a40;
+                color: #ffffff;
+
+        }
+
+
+        .dark-mode .footer {
+            background-color: #353a40;
+                color: #ffffff;
+        }
+
+
+         .dark-mode .footer .col-md-6 {
+            background-color: #353a40;
+            color: #ffffff;
+            border: none;
+        }
+
+        #light-dark-mode {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background 0.3s;
+            width: 42px;
+        }
+
+            #light-dark-mode:hover {
+                background: rgba(0, 0, 0, 0.7);
+            }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".side-nav-item > .side-nav-link").forEach(link => {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault(); // Ngăn load lại trang nếu có href="#"
+
+                    let subMenu = this.nextElementSibling; // Lấy menu con gần nhất
+                    if (subMenu && subMenu.classList.contains("side-nav-second-level")) {
+                        let isShown = subMenu.classList.contains("show");
+
+                        // Đóng tất cả các menu con khác trước khi mở cái mới
+                        document.querySelectorAll(".side-nav-second-level.show").forEach(openMenu => {
+                            if (openMenu !== subMenu) {
+                                openMenu.style.maxHeight = null;
+                                openMenu.classList.remove("show");
+                            }
+                        });
+
+                        // Toggle trạng thái
+                        if (isShown) {
+                            subMenu.style.maxHeight = null;
+                            subMenu.classList.remove("show");
+                        } else {
+                            subMenu.style.maxHeight = subMenu.scrollHeight + "px"; // Hiệu ứng mượt hơn
+                            subMenu.classList.add("show");
+                        }
+                    }
+                });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const darkModeToggle = document.getElementById("light-dark-mode");
+            const themeIcon = document.getElementById("theme-icon");
+
+            if (!darkModeToggle || !themeIcon) {
+                console.error("Không tìm thấy phần tử!");
+                return;
+            }
+
+            // Kiểm tra trạng thái Dark Mode từ localStorage
+            if (localStorage.getItem("darkMode") === "enabled") {
+                document.body.classList.add("dark-mode");
+                themeIcon.classList.replace("fa-moon", "fa-sun");
+            }
+
+            // Bắt sự kiện khi click vào button
+            darkModeToggle.addEventListener("click", function () {
+                document.body.classList.toggle("dark-mode");
+
+                if (document.body.classList.contains("dark-mode")) {
+                    themeIcon.classList.replace("fa-moon", "fa-sun");
+                    localStorage.setItem("darkMode", "enabled");
+                } else {
+                    themeIcon.classList.replace("fa-sun", "fa-moon");
+                    localStorage.setItem("darkMode", "disabled");
+                }
+            });
+        });
+
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/bookingHub")
+            .build();
+
+        connection.start()
+            .then(() => console.log("✅ Kết nối SignalR thành công!"))
+            .catch(err => console.error("❌ Kết nối SignalR thất bại:", err.toString()));
+
+        connection.on("ReceiveBookingRequest", function (roomId, userName) {
+            console.log(`📩 Yêu cầu đặt phòng: Phòng ${roomId}, Người dùng ${userName}`);
+
+            // Lưu yêu cầu vào localStorage
+            let bookingRequests = JSON.parse(localStorage.getItem('bookingRequests')) || [];
+            const existingRequest = bookingRequests.find(req => req.roomId === roomId);
+
+            if (!existingRequest) {
+                bookingRequests.push({ roomId, userName });
+                localStorage.setItem('bookingRequests', JSON.stringify(bookingRequests));
+
+                // Tăng số lượng thông báo trong bell
+                let notificationCount = document.getElementById("notification-count");
+                if (notificationCount) {
+                    let currentCount = parseInt(notificationCount.textContent) || 0;
+                    notificationCount.textContent = currentCount + 1;
+                }
+
+                // Tạo phần tử li và hiển thị thông báo trong bell
+                var li = document.createElement("li");
+                li.classList.add("booking-card");
+                li.setAttribute('data-room-id', roomId); // Thêm data-room-id để nhận diện phòng
+
+                li.innerHTML = `
+                    <div class="card shadow-sm mb-3">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="user-name">${userName}</h5>
+                            <span class="badge badge-success">Phòng ${roomId}</span>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>${userName}</strong> yêu cầu thuê phòng <strong>${roomId}</strong></p>
+                        </div>
+                        <div class="card-footer text-right">
+                            <button class="btn btn-success btn-sm" onclick="window.location.href='/Admin/Admin/Index1';">Xem</button>
+                        </div>
+                    </div>
+                `;
+
+                console.log(li);  // In ra li trước khi thêm vào để kiểm tra
+                let bookingRequestsContainer = document.getElementById("bookingRequests1");
+                if (bookingRequestsContainer) {
+                    bookingRequestsContainer.appendChild(li); // Kiểm tra phần tử DOM
+                } else {
+                    console.error("Không tìm thấy phần tử #bookingRequests1 trong DOM");
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>

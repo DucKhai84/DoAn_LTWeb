@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true">
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
+<link href="/css/main.css" rel="stylesheet" asp-append-version="true" />
+<link rel="stylesheet" href="~/font/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+
+<table id="customerTable" class="display mt-5">
+    <thead>
+        <tr>
+            <th>ID User</th> 
+            <th>Full Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Sex</th>
+            <th>Dob</th>
+            <th>Registration date</th>
+            <th><a href="/Admin/Admin/Add/${data}" class="btn btn-info">Add</a></th>
+        </tr>
+    </thead>
+</table>
+
+<!-- Thêm DataTables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#customerTable').DataTable({
+            "processing": true,
+            "serverSide": false,
+            "ajax": {
+                "url": "/Admin/Admin/GetUsers",
+                "type": "GET",
+                "datatype": "Json"
+            },
+            "columns": [
+                { "data": "maKhachHang" }, 
+                { "data": "tenKhachHang" }, 
+                { "data": "soDienThoai" }, 
+                { "data": "email" },
+                { "data": "gioiTinh" }, 
+                {
+                    "data": "ngaySinh",
+                    "render": function (data) {
+                        return data ? new Date(data).toLocaleDateString("vi-VN") : "";
+                    }
+                },
+                {
+                    "data": "ngayDangKy",
+                    "render": function (data) {
+                        return data ? new Date(data).toLocaleDateString("vi-VN") : "";
+                    }
+                },
+                {
+                    "data": "maKhachHang",
+                    "render": function (data) {
+                         return `
+                                <a href="/Admin/Admin/Edit/${data}" class="btn btn-warning">Edit</a>
+                                <a href="/Admin/Admin/Delete/${data}" class="btn btn-danger">Delete</a>`;
+                    }
+                }
+            ]
+        });
+    });
+</script>
+
+<style>
+    #customerTable_wrapper {
+        margin-top: 20px !important;
+        padding: 30px !important;
+    }
+
+</style>

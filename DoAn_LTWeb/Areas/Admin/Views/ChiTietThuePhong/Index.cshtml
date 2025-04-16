@@ -1,0 +1,190 @@
+﻿@model DoAn_LTWeb.ViewModels.ChiTietThuePhongViewModel
+@{
+    Layout = "/Views/Shared/_LayoutUser.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/profile.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/main.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/user.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/form.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/footer.css" asp-append-version="true">
+<link rel="stylesheet" href="~/fonts/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.5/dist/sweetalert2.min.css" rel="stylesheet">
+
+<!-- Thông báo tùy chỉnh -->
+<div id="customAlert" class="custom-alert">
+    <span id="customAlertMessage"></span>
+</div>
+
+<div class="row">
+    <div class="col-8">
+        <div class="form_wrap">
+            <div class="form_main">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row mb-3 form_title" style="height: 50px; display: inline-block; padding: 0 12px;">
+                            <h4 class="content_info-title">Detail Booking</h4>
+                        </div>
+                        <form id="bookingForm" action="Add" method="post">
+                            <input type="hidden" name="MaKhachHang" id="MaKhachHang" value="@Model.MaKhachHang" />
+                            <input type="hidden" name="MaHopDong" id="MaHopDong" value="@Model.MaHopDong" />
+                            <input type="hidden" name="MaPhongTro" id="MaPhongTro" value="@Model.MaPhongTro" />
+
+                            <div class="form-group mb-3">
+                                <label for="soLuong">Number of people: </label>
+                                <input type="number" id="soLuong" name="SoLuong" class="form-control" min="1" max="10" value="@Model.SoLuong" required>
+                                <span asp-validation-for="SoLuong" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-buttons ms-2">
+                                <button type="button" class="form_button me-2" onclick="handleBookingRequest()">Gửi</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row flex-column">
+            <div class="col-12">
+                <div class="card w-100" style="width: 18rem; min-height: 200px; ">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i style="margin-right: 6px;" s class="fa-solid fa-phone"></i>
+                            Contact for Hutech Accmodation
+                        </h5>
+                        <p class="card-text ">
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit.
+                            Reprehenderit excepturi quidem ipsam, distinctio voluptas debitis
+                            placeat
+                            corporis neque tenetur quam expedita in inventore quia nobis illum
+                            maxime
+                            amet pariatur suscipit!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 mt-4 ">
+                <div class="card w-100" style="width: 18rem; min-height: 200px; ">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i style="margin-right: 6px;" s class="fa-solid fa-phone"></i>
+                            Contact for Hutech Accmodation
+                        </h5>
+                        <p class="card-text ">
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit.
+                            Reprehenderit excepturi quidem ipsam, distinctio voluptas debitis
+                            placeat
+                            corporis neque tenetur quam expedita in inventore quia nobis illum
+                            maxime
+                            amet pariatur suscipit!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.5/dist/sweetalert2.all.min.js"></script>
+<script>
+    // Khởi tạo kết nối SignalR
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/bookingHub")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+    connection.start()
+        .then(() => console.log("✅ Kết nối SignalR thành công!"))
+        .catch(err => console.error("❌ Lỗi kết nối SignalR:", err));
+
+    // Hàm gửi yêu cầu đặt phòng
+    function handleBookingRequest() {
+        const roomId = parseInt(document.getElementById("MaPhongTro").value) || 0; // Đảm bảo là số
+        const userName = '@(Model.TenKhachHang)';
+
+        console.log(`📤 Gửi yêu cầu thuê phòng: Phòng ${roomId}, Người dùng: ${userName}`);
+
+        connection.invoke("RequestBooking", roomId, userName)
+            .then(() => {
+                console.log("✅ Yêu cầu gửi thành công!");
+                showCustomAlert("Đã gửi yêu cầu thành công!");
+
+                setTimeout(() => {
+                    window.location.href = "/Admin/ChiTietThuePhong/Success"; // thay bằng URL giao diện chính của bạn
+                }, 500); // chuyển trang sau 1.5 giây
+            })
+            .catch(err => {
+                console.error("❌ Lỗi khi gửi yêu cầu:", err);
+                showCustomAlert("Gửi yêu cầu thất bại! Lỗi: " + err.toString(), true);
+            });
+    }
+
+    // Nhận thông báo từ Server
+    connection.on("ReceiveBookingRequest", (roomId, userName) => {
+        console.log(`📩 Nhận yêu cầu đặt phòng từ ${userName} cho phòng ${roomId}`);
+    });
+
+    // Cập nhật trạng thái phòng
+    connection.on("BookingStatusChanged", (roomId, status) => {
+        console.log(`📩 Phòng ${roomId} có trạng thái mới: ${status}`);
+
+        if (status === "Thành công") {
+            showCustomAlert(`Yêu cầu thuê phòng ${roomId} đã thành công!`, false);
+            document.getElementById("bookingForm").submit(); // Tự động submit form
+        } else {
+            showCustomAlert(`Yêu cầu thuê phòng ${roomId} đã bị từ chối!`, true);
+        }
+    });
+
+    // Hàm hiển thị thông báo tùy chỉnh
+    function showCustomAlert(message, isError = false) {
+        var alertBox = document.getElementById("customAlert");
+        var alertMessage = document.getElementById("customAlertMessage");
+
+        // Thêm lớp 'error' nếu là lỗi
+        if (isError) {
+            alertBox.classList.add("error");
+        } else {
+            alertBox.classList.remove("error");
+        }
+
+        // Hiển thị thông điệp
+        alertMessage.textContent = message;
+
+        // Hiển thị thông báo
+        alertBox.style.display = "block";
+
+        // Ẩn thông báo sau 3 giây
+        setTimeout(function () {
+            alertBox.style.display = "none";
+        }, 3000);
+    }
+</script>
+
+<style>
+    .custom-alert {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4CAF50; /* Màu nền xanh cho thành công */
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        display: none; /* Ẩn thông báo ban đầu */
+        z-index: 1000;
+        font-size: 16px;
+        max-width: 300px;
+    }
+
+        .custom-alert.error {
+            background-color: #f44336; /* Màu nền đỏ nếu có lỗi */
+        }
+
+</style>

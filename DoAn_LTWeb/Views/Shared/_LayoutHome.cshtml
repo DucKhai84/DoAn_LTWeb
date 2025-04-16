@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Hello</title>
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css" /> 
+    <link rel="stylesheet" href="./css/main.css" asp-append-version="true">
+    <link rel="stylesheet" href="./css/user.css" asp-append-version="true">
+    <link rel="stylesheet" href="./css/footer.css" asp-append-version="true">
+    <link rel="stylesheet" href="./fonts/fontawesome-free-6.5.1-web/css/all.css">
+</head>
+
+<body>
+    <header id="header">
+        <div class="header-wrap container">
+            <h2 class="header-title ">AccomodationAdmin.</h2>
+            <div class="header-info">
+                <div class="header-function">
+                    <ul class="header_function-lists">
+                        <li class="function_lists-item me-2">
+                            <a asp-controller="Home" asp-action="Dashboard" class="function_item-url "><i class="fa-solid fa-chart-bar item_url-icon"></i></a>
+                        </li>
+                        <li class="function_lists-item me-2">
+                            <a asp-controller="Home" asp-action="Index" class="function_item-url"><i class="fa-solid fa-house-user item_url-icon"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="header-login">
+                    <a asp-area="Identity" asp-page="/Account/Login" class="header-login_button">
+                        <i style="margin-right: 10px;" class="fa-solid fa-right-to-bracket"></i>
+                        Đăng nhập
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="slider">
+        <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+            <div class="carousel-inner ">
+                <div class="carousel-item active">
+                    <img src="/images/OIP (1).jpg" class="d-block w-100 " alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/OIP (2).jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/OIP (3).jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="slider_content">
+            <h1 class="slider_content-title">
+                Chào mừng đến với nhà trọ
+                <span>113 Cô Giang</span>
+            </h1>
+            <p class="slider_content-description">
+                113 Cô Giang là một khu trọ đầy an ninh.
+            </p>
+        </div>
+    </section>
+
+
+    <main id="body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 content-wrap">
+                   @RenderBody()
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <footer id="footer" class="border-top  text-muted">
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-6 footer_info border-end">
+                    <h3 class="mb-3">113 Cô Giang.</h3>
+                    <p style="text-align: justify; margin-right: 14px;">
+                        Nhà trọ 133 Cô Giang – không gian yên tĩnh giữa lòng thành phố, phù hợp cho người thích sự riêng tư. Kiến trúc cổ điển, hành lang sâu và ánh sáng mờ tạo cảm giác trầm lắng, tách biệt với thế giới bên ngoài. Một lựa chọn lý tưởng cho những ai muốn trải nghiệm cảm giác "khác biệt".
+                    </p>
+                </div>
+
+                <div class="col-md-3 footer_links border-end">
+                    <h3 class="mb-3 ms-4">Đường dẫn nhanh</h3>
+                    <ul class="footer_links-list ms-3">
+                        <li class="links_list-item"><a class="list-item-url" href="#">Trang chủ</a></li>                        
+                        <li class="links_list-item"><a class="list-item-url" href="#">Điều khoản</a></li>
+                        <li class="links_list-item"><a class="list-item-url" asp-controller="Home" asp-action="Contact">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 footer_contact">
+                    <h3 class="mb-3">Liên hệ</h3>
+                    <ul class="footer_contact-list">
+                        <li class="contact_list-item">
+                            <i style="color: #000;" class="fa-solid fa-location-dot me-2"></i>
+                            <a class="list_item-con-url" href="#">201/10 Xa Lộ Hà Nội, Tp.Thủ Đức</a>
+                        </li>
+
+                        <li class="contact_list-item me-2">
+                            <i style="color: #000;" class="fa-solid fa-phone me-2"></i>
+                            <a class="list_item-con-url" href="#">0912000023</a>
+                        </li>
+
+                        <li class="contact_list-item">
+                            <i style="color: #000;" class="fa-solid fa-envelope me-2"></i>
+                            <a class="list_item-con-url" href="#">hutechAccom@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div style="background-color: #000;" class="footer_copyright">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-md-6 mt-3">
+                        <p style="color: white;">Copyright by Chill's Team</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/site.js" asp-append-version="true"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+﻿@model DoAn_LTWeb.Models.PhongTro
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    ViewData["Title"] = "Add Phòng Trọ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+  
+}
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/style_Admin_2.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/font/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+
+</head>
+
+
+<body>
+    <form class="form-1" asp-action="Add" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="TenPhongTro">Số phòng trọ</label>
+            <input asp-for="TenPhongTro" class="form-control" placeholder="Phòng 01..." />
+            <span asp-validation-for="TenPhongTro" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="MaNhaTro">Nhà Trọ</label>
+            <select asp-for="MaNhaTro" asp-items="@(ViewBag.NhaTro ?? new SelectList(Enumerable.Empty<SelectListItem>()))" class="form-control">
+                <option value="">-- Chọn Nhà Trọ --</option>
+            </select>
+            <span asp-validation-for="MaNhaTro" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="TrangThai">Trạng thái</label>
+            <select asp-for="TrangThai" class="form-control">
+                <option value="Trống">Trống</option>
+            </select>
+            <span asp-validation-for="TrangThai" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DienTich">Diện tích</label>
+            <input asp-for="DienTich" class="form-control" placeholder="Phòng bao nhiêu m2..." />
+            <span asp-validation-for="DienTich" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Mota">Mô Tả</label>
+            <textarea asp-for="Mota" class="form-control" rows="3" placeholder="Phong siêu rẻ, siêu đẹp..."></textarea>
+            <span asp-validation-for="Mota" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Hình ảnh</label>
+            <input type="file" id="imageInput1" name="imageUrl" class="form-control" />
+        </div>
+
+        <div class="row" style="max-height: 150px">
+            <div class="col-6 hinhanh text-start">
+                <h5>Current Image</h5>
+                <img src="@Model.ImageUrl" alt="Product Image" style="max-width:200px; display:none;margin-bottom: 10px;" id="imageInput1_preview" />
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Thêm</button>
+    </form>
+
+
+
+<!-- Script xem trước ảnh -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function previewImage(inputId, previewId) {
+            document.getElementById(inputId).addEventListener("change", function (event)    {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById(previewId).src = e.target.result;
+                        document.getElementById(previewId).style.display = "block";
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        previewImage("imageInput1", "imageInput1_preview");
+    });
+</script>
+
+<script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>

@@ -1,0 +1,62 @@
+﻿@model DoAn_LTWeb.ViewModels.AppointmentViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/profile.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/main.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/user.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/form.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/footer.css" asp-append-version="true">
+<link rel="stylesheet" href="~/fonts/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+else
+{
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-12 mt-4 ">
+                    <div class="card w-100" style="width: 18rem; min-height: 300px; ">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">
+                                <i class="fa-solid fa-file-signature me-2"></i>
+                                Your Contract
+                            </h5>
+                            <p class="card-text "><b class="me-3">ID Contract:</b>  @Model.MaHopDong</p>
+                            <p class="card-text "><b class="me-3">Status Sign: </b>  @Model.HinhThuc</p>
+                            <p class="card-text "><b class="me-3">Start Date:</b>  @Model.NgayBatDau</p>
+                            <p class="card-text "><b class="me-3">End Date:</b> @Model.NgayKetThuc</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="col-12 mt-4">
+                    <div class="card w-100" style="width: 18rem; min-height: 300px; ">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">
+                                <i class="fa-solid fa-calendar-check me-2"></i>
+                                Detail of Appointment
+                            </h5>
+                            <p class="card-text "><b class="me-3">Your Name:</b> @Model.TenKhachHang</p>
+                            <p class="card-text "><b class="me-3">Your Phone:</b>  @Model.SoDienThoai</p>
+                            <p class="card-text "><b class="me-3">Your Email:</b>  @Model.Email</p>
+                            <p class="card-text "><b class="me-3">Room:</b>  @Model.MaPhongTro</p>
+                            <p class="card-text "><b class="me-3">Number of People:</b>  @Model.SoLuong</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,55 @@
+﻿@model DoAn_LTWeb.Models.NhaTro
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/style_Admin_2.css" asp-append-version="true">
+
+
+<form class="form-1" asp-action="Update" enctype="multipart/form-data">
+    <input type="hidden" asp-for="MaNhaTro" />
+    <div class="form-group">
+        <label asp-for="TenNhaTro">Tên phòng trọ</label>
+        <input asp-for="TenNhaTro" class="form-control" placeholder="Hutech..."/>
+        <span asp-validation-for="TenNhaTro" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DiaChi">Tình trạng</label>
+        <input asp-for="DiaChi" class="form-control" placeholder="Ho Chi Minh..."/>
+        <span asp-validation-for="DiaChi" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Hình ảnh</label>
+        <input type="file" id="imageInput1" name="imageUrl" class="form-control" />
+    </div>
+
+
+    <div class="row" style="max-height: 150px">
+        <div class="col-6 hinhanh text-start">
+            <h5>Current Image</h5>
+            <img src="@Model.ImageUrl" alt="Product Image" style="max-width:200px;" id="previewImage" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Update</button>
+</form>
+
+<script>
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.getElementById(input.id === 'imageInput' ? 'previewImage' : 'previewImage1');
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
+

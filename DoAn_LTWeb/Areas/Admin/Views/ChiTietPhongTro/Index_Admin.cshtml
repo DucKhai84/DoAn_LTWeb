@@ -1,0 +1,123 @@
+﻿@model IEnumerable<DoAn_LTWeb.Models.ChiTietPhongTro>
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link href="~/css/Add_Home.css" rel="stylesheet" asp-append-version="true" />
+<link rel="stylesheet" href="~/font/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true" />
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="product-list">
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var group1 in Model.GroupBy(p => p.PhongTro.NhaTro.TenNhaTro))
+                    {
+                        <div class="nha-tro-section mb-4">
+                            <h4 class="nha-tro-title mb-3 text-primary">Nhà trọ: @group1.Key</h4>
+
+                            <div class="row">
+                                @foreach (var group2 in group1.GroupBy(p => new { p.PhongTro.MaPhongTro, p.PhongTro.TenPhongTro }))
+                                {
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card shadow rounded p-3 h-100">
+                                            <div class="card-body">
+                                                <h5 class="card-title">@group2.Key.TenPhongTro</h5>
+                                                <p class="card-text">
+                                                    <strong>Nội thất:</strong>
+                                                    @string.Join(", ", group2.Select(i => i.NoiThat?.TenNoiThat).Distinct())
+                                                </p>
+                                                <p class="card-text"><strong>Giá:</strong> @group2.First().GiaPhong.ToString("N0") tr/Tháng</p>
+
+                                                <a class="btn btn-sm btn-primary" asp-controller="ChiTietPhongTro" asp-action="Update" asp-route-id="@group2.First().MaChiTietPhongTro">
+                                                    <i class="fas fa-edit"></i> Sửa
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-warning">Không có sản phẩm nào.</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .product-list {
+        max-height: 600px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 10px;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .nha-tro-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .card-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .card-text {
+        font-size: 16px;
+        color: #444;
+        margin-bottom: 8px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004a99;
+        }
+
+    /* Scrollbar cho WebKit */
+    .product-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .product-list::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .product-list::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+        .product-list::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+    .dark-mode .card {
+        background-color: #39424b;
+    }
+
+        .dark-mode .card h5,
+        .dark-mode .card p {
+          color: white;
+    }
+</style>

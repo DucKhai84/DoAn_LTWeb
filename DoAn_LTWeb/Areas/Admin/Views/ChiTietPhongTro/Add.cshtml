@@ -1,0 +1,42 @@
+﻿@model DoAn_LTWeb.Models.ChiTietPhongTro
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    ViewData["Title"] = "Chi Tiet Phòng Trọ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<link rel="stylesheet" href="~/css/Add_Home.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/style_Admin_2.css" asp-append-version="true">
+
+<form class="form-1" asp-action="Add" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="MaPhongTro">Phòng Trọ</label>
+        <select  asp-for="MaPhongTro" asp-items="@(ViewBag.PhongTro ?? new SelectList(Enumerable.Empty<SelectListItem>()))" class="form-control">
+            <option value="">-- Chọn Phòng Trọ --</option>
+        </select>
+        <span asp-validation-for="MaPhongTro" class="text-danger"></span>
+    </div>
+
+    <div class="form-group" multiple>
+        <label asp-for="MaNoiThat">Nội Thất</label>
+        <select asp-for="MaNoiThat" asp-items="@(ViewBag.NoiThat ?? new SelectList(Enumerable.Empty<SelectListItem>()))" class="form-control"
+               class="form-control select2" multiple>
+        </select>
+        <span asp-validation-for="MaNoiThat" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Giá phòng</label>
+        <input asp-for="GiaPhong" class="form-control" />
+        <span asp-validation-for="GiaPhong" class="text-danger"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-success">Thêm</button>
+</form>
+
+
+<script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>

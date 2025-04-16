@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Thành công!";
+}
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/fonts/fontawesome-free-6.5.1-web/css/all.css">
+<!-- Import Bootstrap & Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<!-- Modal thông báo -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content animate__animated animate__zoomIn">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="successModalLabel">🎉 Success!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <h3 class="text-success">Make an appointment successfully</h3>
+                <p>Thank to make appointment for us</p>
+                <i class="fa-solid fa-circle-check fa-3x text-success"></i>
+            </div>
+            <div class="modal-footer">
+                <a asp-area="User" asp-controller="PhongTro" asp-action="Index" class="btn btn-primary">Đóng</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script để hiển thị modal khi tải trang -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        successModal.show();
+    });
+</script>
+

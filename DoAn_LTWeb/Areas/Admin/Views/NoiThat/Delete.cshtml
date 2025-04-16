@@ -1,0 +1,44 @@
+﻿@model DoAn_LTWeb.Models.NoiThat
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="/font/fontawesome-free-6.5.1-web/fontawesome-free-6.5.1-web/css/all.css">
+
+
+<div class="container mt-5" style="min-height: 700px">
+    <div class="card shadow border p-4" style="border-radius: 15px">
+        <h3 class="text-danger text-center">Xác nhận xóa nội thất</h3>
+        <hr>
+        <p><strong>Tên:</strong> @Model.TenNoiThat</p>
+        <p><strong>Loại:</strong> @Model.LoaiNoiThat</p>
+        <p><strong>Giá:</strong> @Model.Gia</p>
+        <p><strong>Tình trạng:</strong> @Model.TinhTrang</p>
+        <p><strong>Mô tả:</strong> @Model.MoTa</p>
+        <p><strong>Ngày mua:</strong> @Model.NgayMua</p>
+
+        <div class="alert alert-warning text-center">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            Bạn có chắc chắn muốn xóa nội thất này? Hành động này không thể hoàn tác.
+        </div>
+
+        <form asp-action="DeleteConfirmed" method="post" class="text-center">
+            <input type="hidden" asp-for="MaNoiThat" />
+
+            <button type="submit" name="delete" value="Delete" class="btn btn-danger me-2">
+                <i class="fas fa-trash-alt me-1"></i> Xóa
+            </button>
+
+            <a asp-controller="NoiThat" asp-action="Index_Admin" class="btn btn-secondary">
+                <i class="fas fa-times me-1"></i> Hủy
+            </a>
+        </form>
+    </div>
+</div>
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/assets/js/script.js"></script>

@@ -1,0 +1,104 @@
+﻿@model DoAn_LTWeb.Models.PhongTro
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/profile.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/main.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/user.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/form.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/footer.css" asp-append-version="true">
+<link rel="stylesheet" href="~/fonts/fontawesome-free-6.5.1-web/css/all.css" asp-append-version="true">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+<div class="container mt-4 mb-4 p-4 shadow bg-white" style="border-radius: 15px">
+    <div class="row">
+        <!-- Hình ảnh sản phẩm -->
+        <div class="col-md-6 mb-4">
+            <div class="text-center">
+                <img src="@Model.ImageUrl" alt="Product" class="img-fluid rounded product-image shadow" id="mainImage">
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                @if (Model.ImageUrls != null && Model.ImageUrls.Count > 0)
+                {
+                    foreach (var imgUrl in Model.ImageUrls)
+                    {
+                        <img src="@imgUrl" alt="Thumbnail" class="thumbnail rounded me-2 shadow-sm"
+                             onclick="changeImage(event, this.src)">
+                    }
+                }
+                else
+                {
+                    <img src="@Model.ImageUrl" alt="Thumbnail" class="thumbnail rounded me-2 shadow-sm active"
+                         onclick="changeImage(event, this.src)">
+                }
+            </div>
+        </div>
+
+        <!-- Thông tin phòng trọ -->
+        <div class="col-md-6 border border-dark p-4" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h2 class="mb-3 text-primary">@Model.TenPhongTro</h2>
+            <p class="text-muted mb-4"><i class="bi bi-house-door"></i> @Model.NhaTro.TenNhaTro</p>
+
+            <div class="mb-3">
+                <span class="h4 text-primary fw-bol">@Model.chiTietPhongTro.FirstOrDefault()?.GiaPhong triệu/tháng</span>
+            </div>
+
+            <h5 class="fw-bold text-dark mt-4">Mô tả chi tiết</h5>
+            <p class="mb-4 text-muted ms-3">@Model.Mota</p>
+
+
+            <a style="text-decoration: none; color: white; background-color: #000; padding: 10px 15px; border-radius: 16px; opacity: .8" asp-area="Identity" asp-page="/Account/Login">Đặt lịch hẹn</a>
+
+            <div class="mt-4">
+                <h5 class="fw-bold text-dark">Nội thất sẵn có:</h5>
+                <ul class="list-unstyled ms-3">
+                    @foreach (var item in Model.chiTietPhongTro)
+                    {
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success"></i> @item.NoiThat.TenNoiThat</li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function changeImage(event, src) {
+        document.getElementById('mainImage').src = src;
+            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+</script>
+
+<style>
+    .product-image {
+        max-height: 350px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .thumbnail {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.3s ease, transform 0.2s;
+    }
+
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
+            transform: scale(1.05);
+            border: 2px solid #007bff;
+        }
+
+    .shadow-lg {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+</style>

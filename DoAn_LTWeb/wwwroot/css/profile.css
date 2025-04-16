@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --main-color: #222;
+    /* Chữ đậm */
+    --secondary-color: #fff;
+    /* Màu nền sáng */
+    --bg-form: #f9f9f9;
+    /* Form sáng */
+    --border-color: #ccc;
+    /* Viền nhạt */
+    --gradient-bg: linear-gradient(to bottom, #1a1a1a, #252525, #333, #444, #555);
+}
+
+.content_wrap {
+    margin: 20px 12px;
+    padding: 16px 0;
+}
+
+.content_avatar {}
+
+.content_avatar-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 12px 0;
+}
+
+.content_avatar-info {
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px 16px;
+}
+
+.avatar-info-name {
+    display: block;
+    height: 30px;
+}
+
+.avatar-info-contacts {
+    min-height: 64px;
+    display: flex;
+    flex-direction: column;
+    margin: 6px 0;
+}
+
+.avatar-info-url {
+    text-decoration: none;
+    color: #000;
+    margin: 4px 0;
+}
+
+.avatar-info-socials {
+    min-height: 40px;
+    margin: 36px 0 0;
+}
+
+.info-socials-url {
+
+    text-decoration: none;
+    color: #000;
+    font-size: 22px;
+    padding: 3px;
+    margin: 4px 8px;
+}
+
+.content_avatar:nth-child(3) {}
+
+.content_info {}
+
+.content_info-title {
+    display: inline-block;
+    background-color: #000;
+    opacity: .8;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+}
+
+.update_wrap {
+    height: 400px;
+    position: relative;
+}
+
+
+.content_button {
+    position: absolute;
+    right: 12px;
+    display: flex;
+    justify-content: center;
+    background-color: #000;
+    color: white;
+    font-weight: 500;
+    opacity: .8;
+    padding: 8px 12px;
+    margin-top: 20px;
+    border-radius: 16px;
+    width: 140px;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+}
+.content_button:hover{
+    color: white;
+    transform: scale(1.1);
+}

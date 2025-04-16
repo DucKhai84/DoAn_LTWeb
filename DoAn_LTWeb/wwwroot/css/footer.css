@@ -1,0 +1,76 @@
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+#footer {
+}
+
+#footer .footer_info h3 {
+    color: #000;
+}
+
+#footer .footer_info p {
+    color: #000;
+    opacity: .8;
+}
+
+#footer .footer_links h3 {
+    color: #000;
+}
+
+.footer_links-list {
+list-style: none;
+padding-left: 20px;
+}
+
+.links_list-item {
+margin: 4px 0;
+transition: all .3s ease-in-out;
+}
+
+.links_list-item:hover {
+    color: #000;
+    opacity: 1;
+    transform: translateX(6px);
+}
+
+.list-item-url {
+padding: 4px;
+text-decoration: none;
+color: #000;
+opacity: .8;
+transition: all .3s ease-in-out;
+}
+
+.list-item-url:hover {
+    color: #000;
+    opacity: 1;
+}
+
+#footer .footer_contact h3 {
+color: #000;
+}
+
+.footer_contact-list {
+list-style: none;
+padding-left: 8px;
+}
+
+.contact_list-item {
+margin: 4px 0;
+transition: all .3s ease-in-out;
+}
+
+.list_item-con-url {
+padding: 4px;
+text-decoration: none;
+color: #000;
+opacity: .8;
+}
+
+.list_item-con-url:hover {
+    color: #000;
+    opacity: 1;
+}

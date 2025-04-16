@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/fonts/fontawesome-free-6.5.1-web/css/all.css">
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<table id="nhaXeTable" class="display mt-5">
+    <thead>
+        <tr>
+            <th>ID Card</th>
+            <th>License plate</th>
+            <th>Identity Card</th>
+            <th>Garage</th>
+            <th>Name</th>
+            <th><a href="/Admin/Garage/Add/${data}" class="btn btn-info">Add</a></th>
+        </tr>
+    </thead>
+</table>
+
+<script>
+        $(document).ready(function () {
+        $('#nhaXeTable').DataTable({
+            "processing": true,
+            "serverSide": false,
+            "ajax": {
+                "url": "/Admin/Garage/GetAll",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "maXe" },  // ID xe
+                { "data": "bienSoXe" },  // Biển số
+                { "data": "cmnd" },  // CMND
+                { "data": "maNhaXe" },  // Mã nhà xe
+                { "data": "tenKhachHang" },  // Tên khách hàng
+                {
+                    "data": "maXe",  // ⚠️ Đổi "maNhaXe" thành "maXe"
+                    "render": function (data) {
+                        return `
+                            <a href="/Admin/Garage/Update/${data}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="/Admin/Garage/Delete/${data}" class="btn btn-danger btn-sm">Delete</a>`;
+                    }
+                }
+            ]
+        });
+    });
+
+
+</script>
+
+<style>
+    #nhaXeTable_wrapper {
+        margin-top: 20px !important;
+        padding: 30px !important;
+    }
+
+</style>

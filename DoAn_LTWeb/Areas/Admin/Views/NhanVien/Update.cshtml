@@ -1,0 +1,90 @@
+﻿@model DoAn_LTWeb.Models.NhanVien
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+<link href="/css/style_Admin_2.css" rel="stylesheet" asp-append-version="true" />
+
+<form class="form-1" asp-action="Update" enctype="multipart/form-data">
+    <input type="hidden" asp-for="MaNhanVien" />
+    <div class="form-group">
+        <label asp-for="TenNhanVien">Tên nhân viên</label>
+        <input asp-for="TenNhanVien" class="form-control" placeholder="Nguyen Van A..."/>
+        <span asp-validation-for="TenNhanVien" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SoDienThoai">Số điện thoại</label>
+        <input asp-for="SoDienThoai" class="form-control" placeholder="0123456789..."/>
+        <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" placeholder="example@gmail.com..."/>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CMND">CMND</label>
+        <input asp-for="CMND" class="form-control" placeholder="9876543210..."/>
+        <span asp-validation-for="CMND" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GioiTinh">Giới tính</label>
+        <select asp-for="GioiTinh" class="form-control" asp-items="ViewBag.Genders">
+            <option value="">-- Chọn giới tính --</option>
+        </select>
+        <span asp-validation-for="GioiTinh" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NgaySinh">Ngày sinh</label>
+        <input asp-for="NgaySinh" type="date" class="form-control" />
+        <span asp-validation-for="NgaySinh" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NgayVaoLam">Ngày vào làm</label>
+        <input asp-for="NgayVaoLam" type="date" class="form-control" />
+        <span asp-validation-for="NgayVaoLam" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaNhaTro">Nhà Trọ</label>
+        <select asp-for="MaNhaTro" asp-items="@(ViewBag.NhaTro ?? new SelectList(Enumerable.Empty<SelectListItem>()))" class="form-control">
+            <option value="">-- Chọn Nhà Trọ --</option>
+        </select>
+        <span asp-validation-for="MaNhaTro" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Hình ảnh</label>
+        <input type="file" id="imageInput1" name="imageUrl" class="form-control" />
+    </div>
+
+
+    <div class="row" style="max-height: 150px">
+        <div class="col-6 hinhanh text-start">
+            <h5>Current Image</h5>
+            <img src="@Model.ImageUrl" alt="Product Image" style="max-width:200px;" id="previewImage" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Update</button>
+</form>
+
+<script>
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.getElementById(input.id === 'imageInput' ? 'previewImage' : 'previewImage1');
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>

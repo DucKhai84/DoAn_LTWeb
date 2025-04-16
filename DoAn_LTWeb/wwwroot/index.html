@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication2</title>
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./fonts/fontawesome-free-6.5.1-web/css/all.css">
+</head>
+
+<body>
+    <header id="header">
+        <div class="header-wrap container">
+            <h2 class="header-title ">AccomodationAdmin.</h2>
+            <div class="header-info">
+                <input class="header-search" type="text" placeholder="Search..." name="search" required>
+                <div class="header-login">
+                    <img class="header-login_avatar" src="./images/z6344530663298_c18fa597247268e72918b9a59a9da053.jpg"
+                        alt="Avatar">
+                    <span class="header_login-name">Steave</span>
+                    <div class="login-submenu">
+                        <ul class="login-submenu_list">
+                            <li class="submenu-list_item"><a href="#" class="list-item_url">Profile</a></li>
+                            <li class="submenu-list_item"><a href="#" class="list-item_url">Settings</a></li>
+                            <li class="submenu-list_item"><a href="#" class="list-item_url">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="slidebar">
+        <div class="container slidebar-info">
+            <div class="info-wrap">
+                <span class="info-totalUser">
+                    <i class="fa-regular fa-user"></i>
+                    120 
+                </span>
+                <span class="info-notify">
+                    <i style="margin-right: 6px;" class="fa-regular fa-bell"></i> 0
+                    <div class="info-notify_submenu">
+                        <ul class="notify-submenu_list">
+                            <li class="notify-list_item">
+                                <a href="#" class="notify-item_url">308 has been paid</a>
+                                <i style="margin-left: 18px;" class="fa-solid fa-user-check"></i>
+                            </li>
+                            <li class="notify-list_item">
+                                <a href="#" class="notify-item_url">309 has been paid</a>
+                                <i style="margin-left: 18px;" class="fa-solid fa-user-check"></i>
+                            </li>
+                            <li class="notify-list_item">
+                                <a href="#" class="notify-item_url">310 has been paid</a>
+                                <i style="margin-left: 18px;" class="fa-solid fa-user-check"></i>
+                            </li>
+                            <li class="notify-list_item">
+                                <a href="#" class="notify-item_url">311 has been paid</a>
+                                <i style="margin-left: 18px;" class="fa-solid fa-user-check"></i>
+                            </li>
+                            <li class="notify-list_item">
+                                <a href="#" class="notify-item_url">311 has been paid</a>
+                                <i style="margin-left: 18px;" class="fa-solid fa-user-check"></i>
+                            </li>
+                        </ul>
+                    </div>         
+                </span>
+            </div>
+            
+        </div>
+    </section>
+
+
+    <main id="body" >
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <ul class="navbar-list">
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-chart-bar"></i>
+                            <a href="#" class="nav-item_url">Dashboard</a>
+                        </li>
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-house-user"></i>
+                            <a href="#" class="nav-item_url">Rooms</a>
+                        </li>
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-users"></i>
+                            <a href="#" class="nav-item_url">Users</a>
+                        </li>
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-kitchen-set"></i>
+                            <a href="#" class="nav-item_url">Component</a>
+                        </li>
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-car"></i> 
+                            <a href="#" class="nav-item_url">Garage</a>
+                        </li>
+                        <li style="border-top: 1px solid rgba(0, 0, 0, .3);" class="navbar-list_item p-1"></li>
+
+                        <li class="navbar-list_item">
+                            <i style="margin-right: 10px;" class="fa-solid fa-bars"></i>
+                            <a href="#" class="nav-item_url">Services</a>
+                            <ul class="navbar-item_submenu">
+                                <li class="navbar-item_submenu-item">
+                                    <i style="margin-right: 4px;" class="fa-solid fa-user-plus"></i>
+                                    <a href="#" class="nav-item_url">Tenant</a>
+                                </li>
+                                <li class="navbar-item_submenu-item">
+                                    <i style="margin-right: 4px;" class="fa-solid fa-motorcycle"></i>
+                                    <a href="#" class="nav-item_url">Vehical</a>
+                                </li>
+                                <li class="navbar-item_submenu-item">
+                                    <i style="margin-right: 4px;" class="fa-solid fa-screwdriver-wrench"></i>
+                                    <a href="#" class="nav-item_url">Check Item</a>
+                                </li>
+                                <li class="navbar-item_submenu-item">
+                                    <i style="margin-right: 4px;" class="fa-solid fa-building-shield"></i>
+                                    <a href="#" class="nav-item_url">Policy</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-10 content-wrap">
+                    <div class="content-section">
+                        <div class="row">
+                            <div class="col-3">
+                                <div style="width: 100%;" class="card" style="width: 18rem;">
+                                    <img style="width: 100%; height: 200px;" src="./images/OIP (1).jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Card title</h5>
+                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="col-3">
+                                <div style="width: 100%;"  class="card" style="width: 18rem;">
+                                    <img style="width: 100%; height: 200px;" src="./images/OIP (2).jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Card title</h5>
+                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="col-3">
+                                <div style="width: 100%;" class="card" style="width: 18rem;">
+                                    <img style="width: 100%; height: 200px;" src="./images/OIP (3).jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Card title</h5>
+                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="col-3">
+                                <div style="width: 100%;" class="card" style="width: 18rem;">
+                                    <img style="width: 100%; height: 200px;" src="./images/img-1430_1741324522.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Card title</h5>
+                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                  </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+
+        </div>
+    </footer>
+    <script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/site.js" asp-append-version="true"></script>
+
+</body>
+
+</html>

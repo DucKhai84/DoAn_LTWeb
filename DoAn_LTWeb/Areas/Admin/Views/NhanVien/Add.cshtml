@@ -1,0 +1,104 @@
+﻿@model DoAn_LTWeb.Models.NhanVien
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    ViewData["Title"] = "Add Phòng Trọ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<link rel="stylesheet" href="~/css/Add_Home.css" asp-append-version="true">
+<link rel="stylesheet" href="~/css/style_Admin_2.css" asp-append-version="true">
+
+<form class="form-1" asp-action="Add" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="TenNhanVien">Tên nhân viên</label>
+        <input asp-for="TenNhanVien" class="form-control" placeholder="Nguyen Van A..."/>
+        <span asp-validation-for="TenNhanVien" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SoDienThoai">Số điện thoại</label>
+        <textarea asp-for="SoDienThoai" class="form-control" placeholder="0123456789..."></textarea>
+        <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <textarea asp-for="Email" class="form-control" placeholder="example@gmail.com..."></textarea>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CMND">CMND</label>
+        <textarea asp-for="CMND" class="form-control" placeholder="9876543210..."></textarea>
+        <span asp-validation-for="CMND" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GioiTinh">Giới tính</label>
+        <select asp-for="GioiTinh" class="form-control" asp-items="ViewBag.Genders">
+            <option value="">-- Chọn giới tính --</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+        </select>
+        <span asp-validation-for="GioiTinh" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NgaySinh">Ngày sinh</label>
+        <input asp-for="NgaySinh" type="date" class="form-control" />
+        <span asp-validation-for="NgaySinh" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NgayVaoLam">Ngày vào làm</label>
+        <input asp-for="NgayVaoLam" type="date" class="form-control" />
+        <span asp-validation-for="NgayVaoLam" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaNhaTro">Nhà Trọ</label>
+        <select asp-for="MaNhaTro" asp-items="@(ViewBag.NhaTro ?? new SelectList(Enumerable.Empty<SelectListItem>()))" class="form-control">
+            <option value="">-- Chọn Nhà Trọ --</option>
+        </select>
+        <span asp-validation-for="MaNhaTro" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Hình ảnh</label>
+        <input type="file" id="imageInput1" name="imageUrl" class="form-control" />
+    </div>
+
+    <div class="row" style="max-height: 150px">
+        <div class="col-6 hinhanh text-start">
+            <h5>Current Image</h5>
+            <img src="@Model.ImageUrl" alt="Product Image" style="max-width:100px; display:none;" id="imageInput1_preview" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Thêm</button>
+</form>
+
+<!-- Script xem trước ảnh -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function previewImage(inputId, previewId) {
+            document.getElementById(inputId).addEventListener("change", function (event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById(previewId).src = e.target.result;
+                        document.getElementById(previewId).style.display = "block";
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        previewImage("imageInput1", "imageInput1_preview");
+    });
+</script>
+
+<script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
