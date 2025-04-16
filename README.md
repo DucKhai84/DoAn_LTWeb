@@ -28,12 +28,16 @@ Xuất phát từ thực tế đó, cả nhóm đã quyết định thực hiệ
 # 1. Clone repo
 git clone https://github.com/DucKhai84/DoAn_LTWeb
 
-# 2. Cập nhật file appsettings.json và migration
+# 2. Cập nhật file appsettings.json
 "ConnectionStrings": {
   "DefaultConnection": "Server=your_server;Database=your_db;User Id=your_user;Password=your_password;TrustServerCertificate=True;"
 }
+ 
+# 3. Thêm migration và cập nhập database
+- Mở Tools -> Nuget Package Manager -> Package Manager Console
+- Thêm dòng Add-Migration initialCreate và Update-Database
 
-# 3. Cài đặt các Nuget cần thiết 
+# 4. Cài đặt các Nuget cần thiết 
 - Microsoft.AspNetCore.Identity.EntityFrameWorkCore
 - Microsoft.AspNetCore.Identity.UI
 - Microsoft.AspNetCore.SignalR
